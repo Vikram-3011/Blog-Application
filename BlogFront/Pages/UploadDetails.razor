@@ -1,0 +1,152 @@
+﻿@page "/upload-details"
+@inject NavigationManager Nav
+@inject BlogService BlogService
+@inject UserStateManager UserState
+@inject ProfileService ProfileService
+@inject IJSRuntime JS
+@using BlogFront.Models
+@using Microsoft.AspNetCore.WebUtilities
+@using MudBlazor
+@using Microsoft.AspNetCore.Components.Forms
+@inject ISnackbar Snackbar
+
+<!-- Background -->
+<div class="upload-background"></div>
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="upload-wrapper">
+    <MudPaper Elevation="12" Class="upload-card">
+        <MudText Typo="Typo.h5" Align="Align.Center" Class="font-serif text-accent mb-4">
+             Add Blog Description
+        </MudText>
+
+        <EditForm Model="blog" OnValidSubmit="SubmitBlog">
+            <MudStack Spacing="2">
+
+                <MudTextField T="string"
+                              @bind-Value="blog.Description"
+                              Label="Short Description"
+                              Variant="MudBlazor.Variant.Outlined"
+                              Lines="3"
+                              TextArea="true"
+                              Required />
+
+                <MudButton Type="Submit" OnClick="SubmitBlog"
+                           Variant="MudBlazor.Variant.Filled"
+                           Color="Color.Primary"
+                           FullWidth>
+                    Submit Blog 
+                </MudButton>
+            </MudStack>
+        </EditForm>
+
+        @if (!string.IsNullOrEmpty(message))
+        {
+            <MudText Color="Color.Success" Class="mt-4" Typo="Typo.body1">@message</MudText>
+        }
+    </MudPaper>
+</MudContainer>
+
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .upload-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('/Images/tech 7.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        z-index: -1;
+    }
+
+    .upload-wrapper {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .upload-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(5px);
+        border-radius: 16px;
+        padding: 2rem;
+        width: 100%;
+        color: white;
+    }
+
+    .white-input .mud-input,
+    .white-input .mud-input-slot,
+    .white-input .mud-input-label {
+        color: white !important;
+    }
+
+    .white-input textarea {
+        color: white !important;
+    }
+
+    .font-serif {
+        font-family: 'Georgia', serif;
+    }
+
+    .text-accent {
+        color: #c3bff7;
+    }
+</style>
+
+@code {
+    private BlogPost blog = new();
+    private string? message;
+    private UserProfile? userProfile;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var uri = Nav.ToAbsoluteUri(Nav.Uri);
+        var query = QueryHelpers.ParseQuery(uri.Query);
+        blog.Title = query["title"];
+        blog.Content = query["content"];
+
+        userProfile = await ProfileService.GetProfileAsync(UserState.UserEmail);
+
+        if (userProfile != null && !string.IsNullOrWhiteSpace(userProfile.Name))
+        {
+            blog.Author = userProfile.Name;
+            blog.AuthorEmail = UserState.UserEmail;
+        }
+        else
+        {
+            blog.Author = "";
+            blog.AuthorEmail = UserState.UserEmail;
+        }
+    }
+
+    private async Task SubmitBlog()
+    {
+        if (userProfile == null || string.IsNullOrWhiteSpace(userProfile.Name))
+        {
+            Snackbar.Add(" Please complete your profile before uploading a blog.", Severity.Warning);
+            return;
+        }
+
+        var error = await BlogService.UploadBlogAsync(blog);
+        if (error == null)
+        {
+            Snackbar.Add(" Blog uploaded successfully!", Severity.Success);
+            await Task.Delay(1000);
+            Nav.NavigateTo("/home");
+        }
+        else
+        {
+            Snackbar.Add($" Error uploading blog: {error}", Severity.Error);
+        }
+    }
+
+}

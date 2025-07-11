@@ -1,0 +1,89 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Project\\Blog App\\BlogFront\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "D:\\Project\\Blog App\\BlogFront\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlogFront.styles.css",
+      "PackagePath": "staticwebassets\\BlogFront.styles.css"
+    },
+    {
+      "Id": "D:\\Project\\Blog App\\BlogFront\\wwwroot\\Images\\tech 11.jpg",
+      "PackagePath": "staticwebassets\\Images\\tech 11.jpg"
+    },
+    {
+      "Id": "D:\\Project\\Blog App\\BlogFront\\wwwroot\\Images\\tech 4.jpg",
+      "PackagePath": "staticwebassets\\Images\\tech 4.jpg"
+    },
+    {
+      "Id": "D:\\Project\\Blog App\\BlogFront\\wwwroot\\Images\\tech 7.jpg",
+      "PackagePath": "staticwebassets\\Images\\tech 7.jpg"
+    },
+    {
+      "Id": "D:\\Project\\Blog App\\BlogFront\\wwwroot\\Images\\tech13.jpg",
+      "PackagePath": "staticwebassets\\Images\\tech13.jpg"
+    },
+    {
+      "Id": "D:\\Project\\Blog App\\BlogFront\\wwwroot\\Images\\tech14.jpg",
+      "PackagePath": "staticwebassets\\Images\\tech14.jpg"
+    },
+    {
+      "Id": "D:\\Project\\Blog App\\BlogFront\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "D:\\Project\\Blog App\\BlogFront\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\Project\\Blog App\\BlogFront\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\Project\\Blog App\\BlogFront\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "D:\\Project\\Blog App\\BlogFront\\wwwroot\\icon-192.png",
+      "PackagePath": "staticwebassets\\icon-192.png"
+    },
+    {
+      "Id": "D:\\Project\\Blog App\\BlogFront\\wwwroot\\icon-512.png",
+      "PackagePath": "staticwebassets\\icon-512.png"
+    },
+    {
+      "Id": "D:\\Project\\Blog App\\BlogFront\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "D:\\Project\\Blog App\\BlogFront\\wwwroot\\manifest.webmanifest",
+      "PackagePath": "staticwebassets\\manifest.webmanifest"
+    },
+    {
+      "Id": "D:\\Project\\Blog App\\BlogFront\\wwwroot\\sample-data\\weather.json",
+      "PackagePath": "staticwebassets\\sample-data\\weather.json"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BlogFront.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BlogFront.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.BlogFront.props",
+      "PackagePath": "build\\BlogFront.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.BlogFront.props",
+      "PackagePath": "buildMultiTargeting\\BlogFront.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.BlogFront.props",
+      "PackagePath": "buildTransitive\\BlogFront.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,203 @@
+﻿@inherits LayoutComponentBase
+@using MudBlazor
+@inject UserStateManager userState
+@inject AuthService AuthService
+@inject IJSRuntime JSRuntime
+@using BlogFront.Pages
+@using BlogFront.Services
+@inject NavigationManager Nav
+<MudThemeProvider IsDarkMode="@isDarkMode" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+
+<MudLayout>
+    <MudAppBar Elevation="0" Class=" px-4" Style="background-color: transparent;">
+        <div class="d-flex justify-between align-center w-100">
+            @if (userState.IsLoggedIn())
+            {
+                <div class="d-flex align-center">
+                    <MudTooltip Text="Menu">
+                        <MudIconButton Icon="@Icons.Material.Filled.List" style="color:black;" OnClick="@(() => ToggleDrawer())" />
+                    </MudTooltip>
+                </div>
+            }
+            <div style="cursor: pointer;" @onclick="NavigateToCorrectPage">
+                <MudText Typo="Typo.h5" Class="@($"medium-title {GetTextColorClass()}")">
+                    BLOG APP
+                </MudText>
+            </div>
+
+
+            <div class="d-flex align-center" style="gap: 8px; margin-left: auto;">
+
+                @if (userState.IsLoggedIn())
+                {
+                    <MudButton Variant="MudBlazor.Variant.Text" Class="@GetTextColorClass()" OnClick="@(() => Nav.NavigateTo("/upload"))">
+                        Write
+           </MudButton>
+                }
+                @if (!userState.IsLoggedIn())
+                {
+                    <MudButton OnClick="@(() => Nav.NavigateTo("/"))" Color="Color.Secondary" Variant="MudBlazor.Variant.Text" StartIcon="@Icons.Material.Filled.Login">
+                    Login
+                </MudButton>
+                }
+            
+           
+            <MudTooltip Text="Profile">
+                <MudIconButton Icon="@Icons.Material.Filled.AccountCircle" Color="Color.Secondary" OnClick="@ToggleOpen" />
+            </MudTooltip>
+        </div>
+
+    </div>
+</MudAppBar>
+
+    <MudPopover Open="@_open" Fixed="true" AnchorOrigin="Origin.TopRight" TransformOrigin="Origin.TopRight" Class="px-4 pt-7 profile-popover" OnClose="@ClosePopover">
+        <div class="d-flex flex-column">
+
+            @if (userState.IsLoggedIn())
+            {
+
+                <MudText Typo="Typo.body2">@userState.User?.Email</MudText>
+                <MudDivider Class="my-2" />
+                <MudButton OnClick="@(() => NavigateTo("/profile"))" Variant="MudBlazor.Variant.Text" Style="justify-content: center; text-align: center; " FullWidth="true">Profile </MudButton>
+
+                <MudButton OnClick="Logout" StartIcon="@Icons.Material.Filled.Logout" Variant="MudBlazor.Variant.Text" Color="Color.Error" FullWidth="true">Logout</MudButton>
+            }
+            else
+            {
+                <MudButton Variant="MudBlazor.Variant.Text" StartIcon="@Icons.Material.Filled.Login" Href="/">Login</MudButton>
+
+            }
+        </div>
+    </MudPopover>
+   
+
+    <MudDrawer Open="@isOpen" Variant="DrawerVariant.Persistent" Class="@NavMenuCss">
+        
+        <NavMenu />
+    </MudDrawer>
+
+    
+     <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-4">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+
+
+</MudLayout>
+<style>
+
+    .medium-title {
+        font-family: 'Georgia', 'Times New Roman', serif;
+        font-weight: 700;
+        font-size: 32px; /* or adjust as needed */
+        line-height: 1.2;
+        letter-spacing: -0.5px;
+        color: #121212;
+    }
+
+    .profile-popover {
+        margin-top: 50px; /* 👈 Push popover down */
+    }   
+
+    .navmenu-profile {
+        background-color: #e6e6e6; /* 🔵 Blue for profile */
+    }
+
+    .navmenu-default {
+        background-color: #ffffff; /* 🟢 Green for home and others */
+    }
+
+    .navmenu-auth .nav-button,
+    .navmenu-profile .nav-button {
+        color: white;
+    }
+
+    .navmenu-default .nav-button {
+        color: black;
+    }
+
+
+
+</style>
+@code{
+    private bool isOpen = false;
+    private bool isDarkMode = false;
+    private bool _open; 
+    private void ToggleDarkMode() => isDarkMode = !isDarkMode;
+
+    private void ToggleDrawer() => isOpen = !isOpen;
+    private string NavMenuCss => GetNavMenuCss(Nav.Uri);
+    private void NavigateToCorrectPage()
+    {
+        if (userState.IsLoggedIn())
+        {
+            Nav.NavigateTo("/home");
+        }
+        else
+        {
+            Nav.NavigateTo("/");
+        }
+    }
+
+    private string GetTextColorClass()
+    {
+        var path = Nav.ToBaseRelativePath(Nav.Uri).ToLower();
+
+        if (path.StartsWith("profile"))
+        {
+            return "black-text";
+        }
+
+        return "black-text";
+    }
+    private void NavigateTo(string route)
+    {
+        _open = false;
+        Nav.NavigateTo(route);
+    }
+
+    private async Task Logout()
+    {
+        await AuthService.SignOut();
+        Nav.NavigateTo("/");
+    }
+    private Task RemoveClickListener() => Task.CompletedTask;
+    private Task AddClickListener() => Task.CompletedTask;
+
+    private void ClosePopover()
+    {
+        _open = false;
+        RemoveClickListener();
+        StateHasChanged();
+    }
+    private void ToggleOpen()
+    {
+        _open = !_open;
+        if (_open)
+        {
+            AddClickListener();
+        }
+        else
+        {
+            RemoveClickListener();
+        }
+        StateHasChanged();
+    }
+    private string GetNavMenuCss(string uri)
+    {
+        var path = Nav.ToBaseRelativePath(uri).ToLowerInvariant();
+
+         // 🔴 Signup Page Red
+        if (path.StartsWith("profile"))
+            return "navmenu-profile";  // 🔵 Profile Page Blue
+
+        return "navmenu-default";      // 🟢 All other pages
+    }
+
+
+}

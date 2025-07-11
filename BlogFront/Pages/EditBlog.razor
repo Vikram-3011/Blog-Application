@@ -1,0 +1,105 @@
+﻿@page "/edit-blog/{Id:guid}"
+@inject BlogService BlogService
+@inject NavigationManager Navigation
+@using BlogFront.Models
+@using MudBlazor
+@inject ISnackbar Snackbar
+@inject NavigationManager Nav   
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="py-8 px-4">
+    <MudPaper Class=" mx-auto edit-card" Elevation="14">
+
+        <MudText Typo="Typo.h5" Style="color:black;" Class="mb-4 font-serif font-bold">Edit Your Blog</MudText>
+
+        @if (blog == null)
+        {
+            <MudProgressCircular Color="Color.Primary" Indeterminate="true" Size="Size.Medium" />
+        }
+        else
+        {
+            <EditForm Model="blog" OnValidSubmit="HandleUpdate">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+                <MudTextField @bind-Value="blog.Title" Style="color:black;" Label="Title" Variant="MudBlazor.Variant.Outlined" Required Class="mb-4" />
+                <MudTextField @bind-Value="blog.Description" Style="color:black;" Label="Description" Variant="MudBlazor.Variant.Outlined" Required Class="mb-4" />
+                <MudTextField T="string" @bind-Value="blog.Content" Label="Content" Style="color:black;" Variant="MudBlazor.Variant.Outlined"
+                              Lines="10" Class="mb-4" TextArea="true" />
+
+                <MudButton Color="Color.Primary" Variant="MudBlazor.Variant.Filled" Type="Submit" OnClick="HandleUpdate" FullWidth>
+                    <MudIcon Icon="@Icons.Material.Filled.FileUpload"></MudIcon>
+                    Update Blog
+                </MudButton>
+            </EditForm>
+
+            @if (!string.IsNullOrEmpty(successMessage))
+            {
+                <MudText Class="mt-3" Color="Color.Success">@successMessage</MudText>
+            }
+        }
+
+    </MudPaper>
+</MudContainer>
+
+<style>
+    .edit-card {
+        backdrop-filter: blur(12px);
+        background-color: rgba(255, 255, 255, 0.04);
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        color: white;
+        padding-top: 4rem; /* increased from default */
+        padding-bottom: 4rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .font-serif {
+        font-family: 'Georgia', serif;
+    }
+
+    body {
+        background-image: url('/Images/tech 3.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+</style>
+
+@code {
+    [Parameter] public Guid Id { get; set; }
+
+    private BlogPost? blog;
+    private string successMessage = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        blog = await BlogService.GetBlogByIdAsync(Id);
+        if (blog != null)
+        {
+            blog.Id = Id; // Ensures ID is preserved
+        }
+    }
+
+    private async Task HandleUpdate()
+    {
+        if (blog is not null && blog.Id != Guid.Empty)
+        {
+            var error = await BlogService.UpdateBlogAsync(blog);
+            if (error == null)
+            {
+                Snackbar.Add(" Blog updated successfully!", Severity.Info);
+                Nav.NavigateTo("/profile");
+            }
+            else
+            {
+                Snackbar.Add($" Error updating blog: {error}", Severity.Error);
+            }
+
+        }
+    }
+}

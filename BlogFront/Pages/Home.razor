@@ -1,0 +1,135 @@
+﻿@page "/home"
+@inject BlogService BlogService
+@using BlogFront.Models
+@using BlogFront.Services
+@using MudBlazor
+
+<!-- Background Image -->
+<div class="home-background"></div>
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="main-container">
+    <MudText Typo="Typo.h4" Class="font-serif font-bold mb-6 text-center text-light-purple">
+        Latest Blogs
+    </MudText>
+
+    @if (blogs == null)
+    {
+        <MudProgressCircular Color="Color.Primary" Indeterminate="true" Size="Size.Medium" Class="mt-6" />
+    }
+    else if (!blogs.Any())
+    {
+        <MudText Typo="Typo.h6" Color="Color.Secondary">No blogs found.</MudText>
+    }
+    else
+    {
+        var visibleBlogs = showAll ? blogs.OrderByDescending(b => b.CreatedAt).ToList()
+        : blogs.OrderByDescending(b => b.CreatedAt).Take(5).ToList();
+
+        foreach (var blog in visibleBlogs)
+        {
+            <MudPaper Elevation="12" Class="blog-card mb-4">
+                <MudLink Href="@($"/blog/{blog.Id}")" Class="text-decoration-none">
+                    <MudText Typo="Typo.h4" Style="color:black;" Class="title"> @blog.Title</MudText>
+                    <MudText Typo="Typo.body2" Style="color:black;" Class="description">@blog.Description</MudText>
+                    <MudStack Direction="Row" JustifyContent="SpaceBetween" Class="mt-2">
+                        <MudText Typo="Typo.caption" Style="color:white;" Class="author"> <strong>@blog.Author</strong></MudText>
+                        <MudText Typo="Typo.caption" Class="date"> @blog.CreatedAt.ToLocalTime().ToString("MMM dd, yyyy")</MudText>
+                    </MudStack>
+                </MudLink>
+            </MudPaper>
+        }
+
+        @if (!showAll && blogs.Count > 3)
+        {
+            <div class="text-center mt-4">
+                <MudButton Variant="MudBlazor.Variant.Filled" Color="Color.Primary" OnClick="@(() => showAll = true)">
+                    Show More
+                </MudButton>
+            </div>
+        }
+    }
+</MudContainer>
+
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .home-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('/Images/tech 7.jpg'); /* Use your shared background */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        z-index: -1;
+    }
+
+    .main-container {
+        padding-top: 3rem;
+        padding-bottom: 4rem;
+        color: white;
+    }
+
+    .blog-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 16px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+        transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+    .title {
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: #E3F2FD;
+        margin-bottom: 0.4rem;
+    }
+
+    .description {
+        font-style: italic;
+        color: #CFD8DC;
+        font-size: 1.05rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .author {
+        color: #B0BEC5;
+    }
+
+    .date {
+        color: #81D4FA;
+    }
+
+    .font-serif {
+        font-family: 'Georgia', serif;
+    }
+
+    .text-light-purple {
+        color: #c3bff7;
+    }
+
+</style>
+
+@code {
+    private List<BlogPost>? blogs;
+    private bool showAll = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        blogs = await BlogService.GetBlogsAsync();
+    }
+}

@@ -1,0 +1,232 @@
+﻿@page "/profile"
+@inject ProfileService ProfileService
+@inject BlogService BlogService
+@inject UserStateManager UserStateManager
+@inject NavigationManager NavigationManager
+@inject IDialogService DialogService
+@using BlogFront.Models
+@using MudBlazor
+@inject ISnackbar Snackbar
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="py-6 px-4">
+    <MudGrid GutterSize="3">
+        <!-- 📝 User Blogs (Left Column) -->
+        <MudItem xs="12" md="7">
+            <MudText Typo="Typo.h5" Style="color:black;" Class="font-serif font-bold mb-4">Your Blogs</MudText>
+
+            @if (userBlogs == null)
+            {
+                <MudProgressCircular Color="Color.Primary" Indeterminate="true" Size="Size.Medium" />
+            }
+            else if (!userBlogs.Any())
+            {
+                <MudText Style="color:black;" Typo="Typo.body1">There is no blog yet.</MudText>
+            }
+            else
+            {
+                @foreach (var blog in userBlogs.OrderByDescending(b => b.CreatedAt))
+                {
+                    <MudPaper Class="p-4 mb-3 blog-card position-relative" Elevation="4">
+                        <!-- Top-right menu -->
+                        <div class="menu-button">
+                            <MudMenu  Icon="@Icons.Material.Filled.MoreVert" Color="Color.Info">
+                                <MudMenuItem @onclick="() => EditBlog(blog.Id)">
+                                    <MudText>Edit</MudText>
+                                </MudMenuItem>
+                                <MudMenuItem @onclick="() => DeleteBlog(blog.Id)">
+                                    <MudText Color="Color.Error">Delete</MudText>
+                                </MudMenuItem>
+                            </MudMenu>
+                        </div>
+
+                        <!-- Blog content -->
+                        <div>
+                            <MudText Typo="Typo.h6" Class="title">@blog.Title</MudText>
+                            <MudText Typo="Typo.body2" Class="description">@blog.Description</MudText>
+                            <MudText Typo="Typo.caption" Class="date">@blog.CreatedAt.ToLocalTime().ToString("MMM d, yyyy")</MudText>
+                        </div>
+                    </MudPaper>
+
+                }
+            }
+        </MudItem>
+
+        <!-- 👤 Profile Form (Right Column) -->
+        <MudItem xs="12" md="5">
+            <MudText Typo="Typo.h5" Style="color:black;" Class="font-serif font-bold mb-4">Profile Info</MudText>
+
+            @if (profile == null)
+            {
+                <MudProgressCircular Color="Color.Secondary" Indeterminate="true" />
+            }
+            else
+            {
+                <EditForm EditContext="editContext">
+                    <DataAnnotationsValidator />
+
+
+                    <MudTextField @bind-Value="profile.Name" Label="Name" Required="true" Variant="MudBlazor.Variant.Outlined" Class="mb-3 white-input" />
+                    <ValidationMessage For="@(() => profile.Name)" />
+
+                    <MudTextField @bind-Value="profile.Age" Label="Age" Required="true" Variant="MudBlazor.Variant.Outlined" Class="mb-3 white-input" />
+                    <ValidationMessage For="@(() => profile.Age)" />
+
+                    <MudTextField @bind-Value="profile.Bio" Label="Bio" Variant="MudBlazor.Variant.Outlined" Lines="4" TextArea="true" Class="mb-3 white-input" />
+
+                    <MudButton Color="Color.Primary" Variant="MudBlazor.Variant.Filled" OnClick="HandleSubmit" FullWidth>
+                        Save
+                    </MudButton>
+                </EditForm>
+
+
+
+            }
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
+<style>
+    .blog-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(14px);
+    border-radius: 10px;
+    color: white;
+    }
+
+    .title {
+    font-weight: 600;
+    color: black;
+    }
+
+    .description {
+    font-style: italic;
+    color: black;
+    }
+
+    .date {
+        color: #2096be;
+    }
+
+    .font-serif {
+    font-family: 'Georgia', serif;
+    }
+
+    body {
+    background-image: url('/Images/tech13.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    }
+
+    .menu-button {
+    color:white;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    }
+
+    .white-input .mud-input,
+    .white-input input,
+    .white-input .mud-input-label,
+    .white-input .mud-icon-root {
+    color: black !important;
+    border-color: black !important;
+    }
+
+    .white-input .mud-input-slot {
+    color: black !important;
+    }
+</style>
+
+@code {
+    private UserProfile? profile;
+    private List<BlogPost>? userBlogs;
+    private EditContext? editContext;
+    private ValidationMessageStore? messageStore;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        var email = UserStateManager.UserEmail;
+        if (!string.IsNullOrWhiteSpace(email))
+        {
+            profile = await ProfileService.GetProfileAsync(email) ?? new UserProfile { Email = email };
+            var allBlogs = await BlogService.GetBlogsAsync();
+            userBlogs = allBlogs.Where(b => b.AuthorEmail == email).ToList();
+
+
+            editContext = new EditContext(profile);
+            messageStore = new ValidationMessageStore(editContext);
+
+        }
+    }
+
+    private async Task HandleSubmit()
+    {
+        if (editContext == null || profile == null)
+            return;
+
+        var isValid = editContext.Validate(); 
+
+        if (isValid)
+        {
+            profile.Email = UserStateManager.UserEmail ?? profile.Email;
+
+            var result = await ProfileService.SaveProfileAsync(profile);
+
+            if (result.Contains("created", StringComparison.OrdinalIgnoreCase))
+            {
+                Snackbar.Add(result, Severity.Success);
+            }
+            else if (result.Contains("updated", StringComparison.OrdinalIgnoreCase))
+            {
+                Snackbar.Add(result, Severity.Info); 
+            }
+            else
+            {
+                Snackbar.Add("Something went wrong.", Severity.Error);
+            }
+
+        }
+        else
+        {
+            Snackbar.Add(" Please fill out all required fields correctly", Severity.Error);
+        }
+    }
+
+
+   
+    private void EditBlog(Guid id)
+    {
+        NavigationManager.NavigateTo($"/edit-blog/{id}");
+    }
+
+    private async Task DeleteBlog(Guid id)
+    {
+        bool confirmed = await DialogService.ShowMessageBox(
+            "Confirm Delete",
+            "Are you sure you want to delete this blog?",
+            yesText: "Delete", cancelText: "Cancel"
+        ) == true;
+
+        if (confirmed)
+        {
+            try
+            {
+                await BlogService.DeleteBlogAsync(id);
+                Snackbar.Add(" Blog deleted successfully!", Severity.Warning);
+
+                var email = UserStateManager.UserEmail;
+                var allBlogs = await BlogService.GetBlogsAsync();
+                userBlogs = allBlogs.Where(b => b.AuthorEmail == email).ToList();
+            }
+            catch (Exception ex)
+            {
+                Snackbar.Add($" Failed to delete blog: {ex.Message}", Severity.Error);
+            }
+        }
+    }
+}

@@ -1,0 +1,98 @@
+﻿@page "/blog/{id:guid}"
+@inject BlogService BlogService
+@using BlogFront.Models
+@using MudBlazor
+
+<!-- Background Image -->
+<div class="blog-background"></div>
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="py-12 px-4">
+    @if (blog == null)
+    {
+        <MudProgressCircular Color="Color.Primary" Indeterminate="true" Size="Size.Large" Class="mt-10" />
+    }
+    else
+    {
+        <MudPaper Class="blog-details-card" Elevation="12">
+            <MudCardContent>
+                <MudText Typo="Typo.h3" Style="color:black;" Class="title mb-2">@blog.Title</MudText>
+
+                <MudDivider Class="my-2" />
+
+                <MudText Typo="Typo.body1" Style="color:black;" Class="content-text mb-4">@blog.Content</MudText>
+
+                <MudDivider Class="my-2" />
+
+                <MudStack Direction="Row" JustifyContent="SpaceBetween" AlignItems="MudBlazor.AlignItems.Center" Class="mt-2">
+                    <MudText Typo="Typo.caption" Style="color:black;" Class="author">Blog Posted by <strong>@blog.Author</strong></MudText>
+                    <MudText Typo="Typo.caption" Class="date">
+                         @blog.CreatedAt.ToLocalTime().ToString("MMM dd")
+                    </MudText>
+                </MudStack>
+            </MudCardContent>
+        </MudPaper>
+    }
+</MudContainer>
+
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        height: 100%;
+    }
+
+    .blog-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('/Images/tech 7.jpg'); /* Reuse your existing background */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        z-index: -1;
+    }
+
+    .blog-details-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        color: white;
+        border-radius: 16px;
+        padding: 2rem;
+    }
+
+    .title {
+        font-weight: bold;
+        font-family: 'Georgia', serif;
+        color: #E0E0E0;
+    }
+
+    .content-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #DDDDDD;
+        white-space: pre-line;
+    }
+
+    .author {
+        color: #B0BEC5;
+    }
+
+    .date {
+        color: #90CAF9;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public Guid id { get; set; }
+
+    private BlogPost? blog;
+
+    protected override async Task OnInitializedAsync()
+    {
+        blog = await BlogService.GetBlogByIdAsync(id);
+    }
+}

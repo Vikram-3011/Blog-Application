@@ -1,0 +1,247 @@
+﻿@page "/upload"
+@inject NavigationManager Nav
+@inject UserStateManager UserState
+@inject ProfileService ProfileService
+@using BlogFront.Models
+@using MudBlazor
+@using Microsoft.AspNetCore.Components.Forms
+@inject IJSRuntime JS
+
+
+
+<!-- Background -->
+<div class="upload-background"></div>
+
+<MudContainer Class="upload-wrapper">
+    <MudPaper Elevation="12" Class="upload-card">
+        <MudText Typo="Typo.h5" Align="Align.Center" Class="font-serif mb-4 text-accent">
+            Start Writing Your Blog
+        </MudText>
+
+        <div class="editor-container">
+            <!-- Left: Blog Editor -->
+            <div class="editor-pane left-pane">
+                <EditForm EditContext="editContext">
+                    <DataAnnotationsValidator />
+
+                    <div class="form-content">
+                        <MudStack Spacing="2">
+                            <MudTextField T="string" @bind-Value="blog.Title" Label="Blog Title" Variant="MudBlazor.Variant.Outlined" Required="true" />
+                            <ValidationMessage For="@(() => blog.Title)" />
+
+                            <MudText Typo="Typo.subtitle2">Blog Content</MudText>
+
+
+
+                            <MudTextField T="string"
+                                          @bind-Value="blog.Content"
+                                          Label="Blog Content"
+                                          Variant="Variant.Outlined"
+                                          Lines="17"
+                                          TextArea="true"
+                                          Required="true" />
+                            <ValidationMessage For="@(() => blog.Content)" />
+
+
+
+
+                        </MudStack>
+                    </div>
+                    <div class="form-footer">
+                        <MudButton OnClick="GoToDetails"
+                                   Variant="MudBlazor.Variant.Filled"
+                                   Color="Color.Primary"
+                                   FullWidth>
+                            NEXT
+                        </MudButton>
+                    </div>
+                </EditForm>
+            </div>
+
+
+            <!-- Divider -->
+            <div class="resizer"></div>
+
+            <!-- Right: Live Preview -->
+            <div class="editor-pane right-pane">
+                <h2>@blog.Title</h2>
+                <p><em>@blog.Description</em></p>
+                <div style="white-space: pre-wrap;">@((MarkupString)blog.Content)</div>
+            </div>
+        </div>
+
+    </MudPaper>
+</MudContainer>
+
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .upload-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('/Images/tech 7.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        z-index: -1;
+    }
+
+    .upload-wrapper {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        box-sizing: border-box;
+    }
+
+    .upload-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(4px);
+        border-radius: 10px;
+        padding: 1.5rem;
+        width: 100%;
+        max-width: 1300px;
+        height: 87%;
+        overflow: hidden;
+    }
+
+    .editor-container {
+        display: flex;
+        height: calc(100% - 3rem); /* Adjust for header text */
+        overflow: hidden;
+    }
+
+    .editor-pane {
+        padding: 1rem;
+        height: 100%;
+        overflow-y: auto;
+        box-sizing: border-box;
+    }
+
+    .left-pane {
+        flex: 1.1;
+        background-color: rgba(255, 255, 255, 0.95);
+        border-radius: 8px 0 0 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1rem;
+        height: 100%;
+        box-sizing: border-box;
+    }
+
+    .form-content {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding-right: 0.5rem;
+    }
+
+    .form-footer {
+        padding-top: 10;
+    }
+
+
+    .right-pane {
+        flex: 0.9;
+        background-color: #f5f5f5;
+        border-left: 1px solid #ddd;
+        overflow-y: auto;
+        border-radius: 0 8px 8px 0;
+    }
+
+    .resizer {
+        width: 5px;
+        cursor: col-resize;
+        background-color: #888;
+        user-select: none;
+    }
+
+    .font-serif {
+        font-family: 'Georgia', serif;
+    }
+
+    .text-accent {
+        color: #c3bff7;
+    }
+
+</style>
+
+@code {
+    private BlogPost blog = new();
+    private EditContext? editContext;
+
+    private Task OnContentChanged(string value)
+    {
+        blog.Content = value;
+        return Task.CompletedTask;
+    }
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(blog);
+    }
+
+    private async Task GoToDetails()
+    {
+        if (editContext == null)
+            return;
+
+        var isValid = editContext.Validate();
+        if (!isValid)
+            return;
+
+        var profile = await ProfileService.GetProfileAsync(UserState.UserEmail);
+        blog.Author = profile?.Name ?? "Unknown";
+        blog.AuthorEmail = UserState.UserEmail;
+
+        Nav.NavigateTo($"/upload-details?title={Uri.EscapeDataString(blog.Title)}&content={Uri.EscapeDataString(blog.Content)}");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initResize");
+        }
+    }
+}
+
+<script>
+    window.initResize = function () {
+        const resizer = document.querySelector('.resizer');
+        const left = resizer.previousElementSibling;
+        const right = resizer.nextElementSibling;
+
+        let x = 0;
+        let leftWidth = 0;
+
+        const mouseDownHandler = function (e) {
+            x = e.clientX;
+            leftWidth = left.getBoundingClientRect().width;
+
+            document.addEventListener('mousemove', mouseMoveHandler);
+            document.addEventListener('mouseup', mouseUpHandler);
+        };
+
+        const mouseMoveHandler = function (e) {
+            const dx = e.clientX - x;
+            const newLeftWidth = ((leftWidth + dx) * 100) / resizer.parentNode.getBoundingClientRect().width;
+            left.style.flex = `0 0 ${newLeftWidth}%`;
+        };
+
+        const mouseUpHandler = function () {
+            document.removeEventListener('mousemove', mouseMoveHandler);
+            document.removeEventListener('mouseup', mouseUpHandler);
+        };
+
+        resizer.addEventListener('mousedown', mouseDownHandler);
+    };
+</script>
