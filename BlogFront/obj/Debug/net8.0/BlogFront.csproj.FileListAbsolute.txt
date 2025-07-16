@@ -1147,6 +1147,7 @@ D:\Project\Blog App\BlogFront\obj\Debug\net8.0\BlogFront.dll
 D:\Project\Blog App\BlogFront\obj\Debug\net8.0\refint\BlogFront.dll
 D:\Project\Blog App\BlogFront\obj\Debug\net8.0\BlogFront.pdb
 D:\Project\Blog App\BlogFront\obj\Debug\net8.0\ref\BlogFront.dll
-D:\Project\Blog App\BlogFront\obj\Debug\net8.0\compressed\77ews4u35a-4ytqn106u4.gz
-D:\Project\Blog App\BlogFront\obj\Debug\net8.0\compressed\jurs0ia26o-sbra50beyc.gz
-D:\Project\Blog App\BlogFront\obj\Debug\net8.0\compressed\bcd04e5o0e-cmujvnzyk2.gz
+D:\Project\Blog App\BlogFront\obj\Debug\net8.0\BlogFront.sourcelink.json
+D:\Project\Blog App\BlogFront\obj\Debug\net8.0\compressed\77ews4u35a-dcr3y9ku4i.gz
+D:\Project\Blog App\BlogFront\obj\Debug\net8.0\compressed\jurs0ia26o-r3ic0n1r53.gz
+D:\Project\Blog App\BlogFront\obj\Debug\net8.0\compressed\bcd04e5o0e-5e1brh4xpx.gz

@@ -19,6 +19,7 @@ public class AuthController : ControllerBase
         }
 
         _supabaseClient = new Supabase.Client(config.Value.Url, config.Value.ApiKey, options);
+
     }
 
     [HttpPost("signup")]
@@ -106,6 +107,8 @@ public class SupabaseConfig
 {
     public string Url { get; set; } = string.Empty;
     public string ApiKey { get; set; } = string.Empty;
+
+    public string ServiceRoleKey { get; set; } = string.Empty;
 }
 
 public class ChangePasswordRequest

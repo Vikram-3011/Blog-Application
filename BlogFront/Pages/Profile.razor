@@ -12,7 +12,7 @@
     <MudGrid GutterSize="3">
         <!-- 📝 User Blogs (Left Column) -->
         <MudItem xs="12" md="7">
-            <MudText Typo="Typo.h5" Style="color:black;" Class="font-serif font-bold mb-4">Your Blogs</MudText>
+            <MudText Typo="Typo.h5" Style="color:black;"  Class="font-serif font-bold mb-4">Your Blogs</MudText>
 
             @if (userBlogs == null)
             {
@@ -26,17 +26,18 @@
             {
                 @foreach (var blog in userBlogs.OrderByDescending(b => b.CreatedAt))
                 {
-                    <MudPaper Class="p-4 mb-3 blog-card position-relative" Elevation="4">
+                    <MudPaper Class="p-4 mb-3 blog-card position-relative clickable-paper" @onclick="() => navblogdetails(blog.Id)" Elevation="4">
                         <!-- Top-right menu -->
                         <div class="menu-button">
-                            <MudMenu  Icon="@Icons.Material.Filled.MoreVert" Color="Color.Info">
-                                <MudMenuItem @onclick="() => EditBlog(blog.Id)">
-                                    <MudText>Edit</MudText>
-                                </MudMenuItem>
-                                <MudMenuItem @onclick="() => DeleteBlog(blog.Id)">
-                                    <MudText Color="Color.Error">Delete</MudText>
-                                </MudMenuItem>
-                            </MudMenu>
+                          
+                            @if (UserStateManager.IsAdmin || blog.AuthorEmail == UserStateManager.UserEmail)
+                            {
+                                <MudMenu Icon="@Icons.Material.Filled.MoreVert" Color="Color.Info">
+                                    <MudMenuItem @onclick="() => EditBlog(blog.Id)">Edit</MudMenuItem>
+                                    <MudMenuItem Color="Color.Error" @onclick="() => DeleteBlog(blog.Id)">Delete</MudMenuItem>
+                                </MudMenu>
+                            }
+
                         </div>
 
                         <!-- Blog content -->
@@ -104,7 +105,7 @@
     }
 
     .date {
-        color: #2096be;
+    color: #2096be;
     }
 
     .font-serif {
@@ -139,6 +140,16 @@
     .white-input .mud-input-slot {
     color: black !important;
     }
+
+    .clickable-paper {
+        cursor: pointer;
+        transition: transform 0.1s ease-in-out;
+    }
+
+        .clickable-paper:hover {
+            transform: scale(1.01);
+        }
+
 </style>
 
 @code {
@@ -197,8 +208,11 @@
         }
     }
 
+    private void navblogdetails(Guid id)
+    {
+        NavigationManager.NavigateTo($"/blog/{id}");
+    }
 
-   
     private void EditBlog(Guid id)
     {
         NavigationManager.NavigateTo($"/edit-blog/{id}");
@@ -216,7 +230,7 @@
         {
             try
             {
-                await BlogService.DeleteBlogAsync(id);
+                await BlogService.DeleteBlogAsync(id, UserStateManager.UserEmail);
                 Snackbar.Add(" Blog deleted successfully!", Severity.Warning);
 
                 var email = UserStateManager.UserEmail;

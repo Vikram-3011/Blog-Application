@@ -1,0 +1,230 @@
+﻿@page "/admin-management"
+@inject AdminServiceFront AdminService
+@inject UserStateManager UserState
+@inject NavigationManager Nav
+@inject ISnackbar Snackbar   
+@using BlogUser = BlogFront.Models.User
+@using MudBlazor
+@inject BlogService BlogService
+
+<div class="home-background"></div>
+
+             @if (!checkedAdmin)
+            {
+             <MudProgressCircular Indeterminate="true" />
+              return;
+            }
+
+            @if (!UserState.IsAdmin)
+            {
+                <MudText Typo="Typo.h6"  > You are not authorized to view this page.</MudText>
+                return;
+            }
+
+<MudText Typo="Typo.h4" Class="font-serif font-bold mb-6 text-center text-light-purple">
+    Admin Management
+</MudText>
+
+    <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex justify-content-start" Style="margin-top: 10vh;">
+           
+            @if (UserState.IsSuperAdmin)
+{
+            <MudTextField @bind-Value="targetEmail" Label="User Email" Variant="Variant.Outlined" Class="mb-4" FullWidth="true" />
+
+            <MudStack Row="true" Spacing="2" Justify="Justify.Center">
+                <MudButton OnClick="() => Promote(targetEmail)" Color="Color.Primary">Promote to Admin</MudButton>
+                <MudButton OnClick="() => Demote(targetEmail)" Color="Color.Error">Demote to User</MudButton>
+            </MudStack>
+}
+        
+    </MudContainer>
+
+
+    <MudContainer MaxWidth="MaxWidth.Medium" Class="mt-10">
+    <MudPaper Class="pa-4" Elevation="4">
+        <MudText Typo="Typo.h6" Class="mb-3">Search User Blogs</MudText>
+
+        <MudTextField @bind-Value="searchTerm"
+                      Placeholder="Enter email or name"
+                      Variant="Variant.Outlined"
+                      Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.Search"
+                      Immediate="true"
+                      OnKeyUp="HandleSearchKey"
+                      Class="flex-grow-1" />
+
+        <MudButton Icon="@Icons.Material.Filled.Search"
+                       Color="Color.Primary"
+                       OnClick="SearchBlogs"
+                       Style="margin-top: 3px;" >Search</MudButton>
+
+        @if (isSearching)
+        {
+            <MudProgressCircular Indeterminate="true" Class="mt-4" />
+        }
+        else if (searchedBlogs is not null && searchedBlogs.Any())
+        {
+           <MudList T="BlogPost" Class="mt-4">
+    @foreach (var blog in searchedBlogs.OrderByDescending(b => b.CreatedAt))
+    {
+        <MudListItem @onclick="() => NavigateToBlog(blog.Id)" Style="cursor: pointer;">
+            <MudListItemText>
+                <MudText Typo="Typo.subtitle1">@blog.Title</MudText>
+                <MudText Typo="Typo.caption">@blog.Description</MudText>
+                <MudText Typo="Typo.caption" Color="Color.Secondary">
+                    @blog.CreatedAt.ToLocalTime().ToString("MMM dd, yyyy")
+                </MudText>
+            </MudListItemText>
+        </MudListItem>
+    }
+</MudList>
+
+        }
+        else if (searchedBlogs != null)
+        {
+            Snackbar.Add("No blogs found for this user.", Severity.Error);
+
+               }
+    </MudPaper>
+</MudContainer>
+
+
+<style>
+    .home-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('/Images/tech 7.jpg'); /* Use your shared background */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        z-index: -1;
+    }
+
+    .font-serif {
+        font-family: 'Georgia', serif;
+    }
+
+</style>
+@code {
+    private bool checkedAdmin;
+    private string targetEmail = "";
+    private string searchTerm = "";
+    private List<BlogPost>? searchedBlogs;
+    private bool isSearching = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (string.IsNullOrWhiteSpace(UserState.UserEmail))
+        {
+            Snackbar.Add("Please log in to continue.", Severity.Error);
+            Nav.NavigateTo("/login");
+            return;
+        }
+
+        var email = UserState.UserEmail.ToLower();
+        bool isAdmin = await AdminService.IsAdmin(email);
+        bool isSuper = await AdminService.IsSuperAdmin(email); // ✅ ADD THIS
+
+        UserState.SetUser(new BlogUser(UserState.UserEmail)
+            {
+                Name = UserState.UserName,
+                IsAdmin = isAdmin,
+                IsSuperAdmin = isSuper     // ✅ SET IT
+            });
+
+        checkedAdmin = true;
+
+        if (!isAdmin)
+            Nav.NavigateTo("/unauthorized");
+    }
+
+
+    private async Task Promote(string email)
+    {
+        try
+        {
+            await AdminService.PromoteAsync(email);
+            Snackbar.Add($"{email} has been promoted to admin.", Severity.Success); 
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error promoting user: {ex.Message}", Severity.Error);  
+        }
+    }
+
+    private async Task Demote(string email)
+    {
+        try
+        {
+            await AdminService.DemoteAsync(email);
+            Snackbar.Add($"{email} has been demoted to regular user.", Severity.Info); 
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error demoting user: {ex.Message}", Severity.Error);
+        }
+    }
+    private async Task HandleSearchKey(KeyboardEventArgs args)
+    {
+        if (args.Key == "Enter" && !string.IsNullOrWhiteSpace(searchTerm))
+        {
+            isSearching = true;
+            searchedBlogs = null;
+
+            try
+            {
+                var allBlogs = await BlogService.GetBlogsAsync();
+
+                searchedBlogs = allBlogs
+                    .Where(b => (!string.IsNullOrWhiteSpace(b.AuthorEmail) && b.AuthorEmail.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
+                                (!string.IsNullOrWhiteSpace(b.Author) && b.Author.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)))
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                Snackbar.Add("Error fetching user blogs: " + ex.Message, Severity.Error);
+            }
+
+            isSearching = false;
+            StateHasChanged();
+        }
+    }
+
+    private void NavigateToBlog(Guid blogId)
+    {
+        Nav.NavigateTo($"/blog/{blogId}");
+    }
+
+    private async Task SearchBlogs()
+    {
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            Snackbar.Add("Please enter a search term.", Severity.Warning);
+            return;
+        }
+
+        isSearching = true;
+        searchedBlogs = null;
+
+        try
+        {
+            var allBlogs = await BlogService.GetBlogsAsync();
+
+            searchedBlogs = allBlogs
+                .Where(b => (!string.IsNullOrWhiteSpace(b.AuthorEmail) && b.AuthorEmail.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
+                            (!string.IsNullOrWhiteSpace(b.Author) && b.Author.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)))
+                .ToList();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add("Error fetching user blogs: " + ex.Message, Severity.Error);
+        }
+
+        isSearching = false;
+        StateHasChanged();
+    }
+
+}

@@ -1,4 +1,4 @@
-using BlogFront;
+﻿using BlogFront;
 using BlogFront.Services;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -13,6 +13,7 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddSingleton<UserStateManager>();
 builder.Services.AddScoped<BlogService>();
 builder.Services.AddScoped<ProfileService>();
+builder.Services.AddScoped<AdminServiceFront>();   // ⬅️ add this
 
 
 

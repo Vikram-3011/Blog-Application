@@ -3,12 +3,18 @@
 @using BlogFront.Models
 @using BlogFront.Services
 @using MudBlazor
+@inject UserStateManager UserStateManager
+@inject ProfileService ProfileService
+@using BlogUser = BlogFront.Models.User
 
-<!-- Background Image -->
+
+
+
+
 <div class="home-background"></div>
 
 <MudContainer MaxWidth="MaxWidth.Medium" Class="main-container">
-    <MudText Typo="Typo.h4" Class="font-serif font-bold mb-6 text-center text-light-purple">
+    <MudText Typo="Typo.h4" Class="font-serif font-bold mb-6 text-center ">
         Latest Blogs
     </MudText>
 
@@ -36,6 +42,8 @@
                         <MudText Typo="Typo.caption" Class="date"> @blog.CreatedAt.ToLocalTime().ToString("MMM dd, yyyy")</MudText>
                     </MudStack>
                 </MudLink>
+
+                
             </MudPaper>
         }
 
@@ -127,9 +135,21 @@
 @code {
     private List<BlogPost>? blogs;
     private bool showAll = false;
-
+   
     protected override async Task OnInitializedAsync()
     {
         blogs = await BlogService.GetBlogsAsync();
+        // 1️⃣  Load blogs
+        blogs = await BlogService.GetBlogsAsync();
+
+        // 2️⃣  Cache user name if we don’t have it yet
+        if (UserStateManager.UserEmail is not null &&
+            string.IsNullOrEmpty(UserStateManager.UserName))
+        {
+            var p = await ProfileService.GetProfileAsync(UserStateManager.UserEmail);
+            UserStateManager.SetUser(
+                new BlogUser(UserStateManager.UserEmail) { Name = p?.Name });
+        }
     }
+
 }

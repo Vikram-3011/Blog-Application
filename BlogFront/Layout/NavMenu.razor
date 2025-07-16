@@ -3,17 +3,27 @@
 @inject NavigationManager NavigationManager
 @using MudBlazor
 
-<MudNavMenu>
+<MudNavMenu Class="nav-wrapper">
 
-    @if (userState.IsLoggedIn())
+    <div class="nav-top">
+        @if (userState.IsLoggedIn())
+        {
+            <MudNavLink Href="/home" Icon="@Icons.Material.Filled.Home" Class="nav-button">Home</MudNavLink>
+            <MudNavLink Href="/upload" Icon="@Icons.Material.Filled.Create" Class="nav-button">Write</MudNavLink>
+        }
+    </div>
+
+    @if (userState.IsLoggedIn() && userState.IsAdmin)
     {
-
-        <MudNavLink Href="/home" Icon="@Icons.Material.Filled.Home" Class="nav-button">Home</MudNavLink>
-
-        <MudNavLink Href="/upload" Icon="@Icons.Material.Filled.Create" Class="nav-button">Write</MudNavLink>
-
+        <div class="nav-bottom">
+            <MudNavLink Href="/admin-management" Icon="@Icons.Material.Filled.AdminPanelSettings" Class="nav-button">
+                Admin
+            </MudNavLink>
+        </div>
     }
+
 </MudNavMenu>
+
 
 <style>
     
@@ -54,6 +64,23 @@
 
     .mud-nav-item:hover {
         background: none !important;
+    }
+
+    .nav-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .nav-top {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-bottom {
+        margin-bottom: 20px;
     }
 
 </style>

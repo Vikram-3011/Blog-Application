@@ -2,8 +2,13 @@
 @inject BlogService BlogService
 @using BlogFront.Models
 @using MudBlazor
+@inject ISnackbar Snackbar
+@inject AdminServiceFront AdminService
+@inject NavigationManager Nav
+@inject UserStateManager UserState
+@inject IJSRuntime JS
 
-<!-- Background Image -->
+
 <div class="blog-background"></div>
 
 <MudContainer MaxWidth="MaxWidth.Medium" Class="py-12 px-4">
@@ -19,17 +24,25 @@
 
                 <MudDivider Class="my-2" />
 
-                <MudText Typo="Typo.body1" Style="color:black;" Class="content-text mb-4">@blog.Content</MudText>
+                <div class="content-text mb-4">@((MarkupString)blog.Content)</div>
 
                 <MudDivider Class="my-2" />
 
                 <MudStack Direction="Row" JustifyContent="SpaceBetween" AlignItems="MudBlazor.AlignItems.Center" Class="mt-2">
                     <MudText Typo="Typo.caption" Style="color:black;" Class="author">Blog Posted by <strong>@blog.Author</strong></MudText>
                     <MudText Typo="Typo.caption" Class="date">
-                         @blog.CreatedAt.ToLocalTime().ToString("MMM dd")
+                        @blog.CreatedAt.ToLocalTime().ToString("MMM dd")
                     </MudText>
                 </MudStack>
             </MudCardContent>
+
+            @if (isAdmin)
+            {
+                <MudStack Row="true" Spacing="2" Class="mt-4">
+                    <MudButton Color="Color.Primary" Variant="Variant.Text" OnClick="EditBlog">Edit</MudButton>
+                    <MudButton Color="Color.Error" Variant="Variant.Text" OnClick="DeleteBlog">Delete</MudButton>
+                </MudStack>
+            }
         </MudPaper>
     }
 </MudContainer>
@@ -72,8 +85,8 @@
     .content-text {
         font-size: 1.1rem;
         line-height: 1.8;
-        color: #DDDDDD;
-        white-space: pre-line;
+        color: #212121;
+        white-space: normal; /* Allow HTML flow */
     }
 
     .author {
@@ -83,6 +96,19 @@
     .date {
         color: #90CAF9;
     }
+
+    .content-text a {
+        color: #42A5F5;
+        text-decoration: underline;
+    }
+        
+    .content-text strong {
+        font-weight: bold;
+    }
+
+    .content-text em {
+        font-style: italic;
+    }
 </style>
 
 @code {
@@ -90,9 +116,39 @@
     public Guid id { get; set; }
 
     private BlogPost? blog;
+    private bool isAdmin = false;
+
 
     protected override async Task OnInitializedAsync()
     {
         blog = await BlogService.GetBlogByIdAsync(id);
+
+        if (!string.IsNullOrWhiteSpace(UserState.UserEmail))
+        {
+            isAdmin = await AdminService.IsAdmin(UserState.UserEmail);
+        }
     }
+
+    private void EditBlog()
+    {
+        Nav.NavigateTo($"/edit-blog/{id}");
+    }
+
+    private async Task DeleteBlog()
+    {
+        bool confirm = await JS.InvokeAsync<bool>("confirm", $"Are you sure you want to delete '{blog?.Title}'?");
+        if (!confirm) return;
+
+        var response = await BlogService.DeleteBlogAsync(id, UserState.UserEmail);
+        if (response)
+        {
+            Snackbar.Add("Blog deleted successfully.", Severity.Success);   
+            Nav.NavigateTo("/home");
+        }
+        else
+        {
+            Snackbar.Add("Failed to delete blog.", Severity.Error);
+        }
+    }
+
 }

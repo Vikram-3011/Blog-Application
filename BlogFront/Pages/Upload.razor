@@ -6,51 +6,62 @@
 @using MudBlazor
 @using Microsoft.AspNetCore.Components.Forms
 @inject IJSRuntime JS
+@using System.Text.RegularExpressions
+@using System.Net
 
 
 
-<!-- Background -->
 <div class="upload-background"></div>
 
 <MudContainer Class="upload-wrapper">
     <MudPaper Elevation="12" Class="upload-card">
-        <MudText Typo="Typo.h5" Align="Align.Center" Class="font-serif mb-4 text-accent">
+        <MudText Typo="Typo.h5" Align="Align.Center"
+                 Class="font-serif mb-4 text-accent">
             Start Writing Your Blog
         </MudText>
 
         <div class="editor-container">
-            <!-- Left: Blog Editor -->
+           
             <div class="editor-pane left-pane">
                 <EditForm EditContext="editContext">
                     <DataAnnotationsValidator />
 
                     <div class="form-content">
                         <MudStack Spacing="2">
-                            <MudTextField T="string" @bind-Value="blog.Title" Label="Blog Title" Variant="MudBlazor.Variant.Outlined" Required="true" />
+
+                           
+                            <MudTextField @bind-Value="blog.Title"
+                                          Label="Blog Title"
+                                          Variant="Variant.Outlined"
+                                          Required="true" />
                             <ValidationMessage For="@(() => blog.Title)" />
 
-                            <MudText Typo="Typo.subtitle2">Blog Content</MudText>
+                          
+                            <MudStack Row="true" Spacing="1" AlignItems="AlignItems.Center" Class="rte-toolbar">
+                                <MudIconButton Icon="@Icons.Material.Filled.FormatBold"
+                                               Title="Bold"
+                                               OnClick="@(async () => await ApplyFormatAsync("**", "**"))" />
+                                <MudIconButton Icon="@Icons.Material.Filled.FormatItalic"
+                                               Title="Italic"
+                                               OnClick="@(async () => await ApplyFormatAsync("*", "*"))" />
+                                <MudIconButton Icon="@Icons.Material.Filled.Link"
+                                               Title="Link"
+                                               OnClick="@(async () => await InsertLinkAsync())" />
+                            </MudStack>
 
+                           
+                        <textarea id="contentBox"
+                          @bind="blog.Content" @bind:event="oninput" required
+                                      style="flex-grow: 1;"></textarea>
 
-
-                            <MudTextField T="string"
-                                          @bind-Value="blog.Content"
-                                          Label="Blog Content"
-                                          Variant="Variant.Outlined"
-                                          Lines="17"
-                                          TextArea="true"
-                                          Required="true" />
                             <ValidationMessage For="@(() => blog.Content)" />
-
-
-
-
-                        </MudStack>
+                                </MudStack>
                     </div>
+
                     <div class="form-footer">
-                        <MudButton OnClick="GoToDetails"
-                                   Variant="MudBlazor.Variant.Filled"
+                        <MudButton Variant="Variant.Filled"
                                    Color="Color.Primary"
+                                   OnClick="GoToDetails"
                                    FullWidth>
                             NEXT
                         </MudButton>
@@ -58,18 +69,20 @@
                 </EditForm>
             </div>
 
-
-            <!-- Divider -->
+           
             <div class="resizer"></div>
 
-            <!-- Right: Live Preview -->
+           
             <div class="editor-pane right-pane">
                 <h2>@blog.Title</h2>
-                <p><em>@blog.Description</em></p>
-                <div style="white-space: pre-wrap;">@((MarkupString)blog.Content)</div>
-            </div>
-        </div>
+                <div style="white-space: pre-wrap;">
+                    @((MarkupString)ConvertSimpleMarkup(blog.Content))
+                </div>
+            </div>          
 
+        </div>         
+
+       
     </MudPaper>
 </MudContainer>
 
@@ -81,6 +94,10 @@
         overflow: hidden;
     }
 
+    .rte-toolbar {
+        flex-direction: row !important; 
+        gap: 0.5rem; 
+    }
     .upload-background {
         position: fixed;
         top: 0;
@@ -115,7 +132,7 @@
 
     .editor-container {
         display: flex;
-        height: calc(100% - 3rem); /* Adjust for header text */
+        height: calc(100% - 3rem); 
         overflow: hidden;
     }
 
@@ -127,7 +144,7 @@
     }
 
     .left-pane {
-        flex: 1.1;
+        flex: 0 0 55%;
         background-color: rgba(255, 255, 255, 0.95);
         border-radius: 8px 0 0 8px;
         display: flex;
@@ -140,6 +157,8 @@
 
     .form-content {
         flex-grow: 1;
+        display: flex;
+        flex-direction: column;
         overflow-y: auto;
         padding-right: 0.5rem;
     }
@@ -150,18 +169,25 @@
 
 
     .right-pane {
-        flex: 0.9;
+        flex: 1;
         background-color: #f5f5f5;
         border-left: 1px solid #ddd;
         overflow-y: auto;
         border-radius: 0 8px 8px 0;
+        padding: 1rem;
+        font-family: 'Segoe UI', sans-serif;
+        white-space: pre-wrap;
     }
+
 
     .resizer {
         width: 5px;
         cursor: col-resize;
         background-color: #888;
         user-select: none;
+        width: 5px;
+        cursor: col-resize;
+        background: #888;
     }
 
     .font-serif {
@@ -172,48 +198,88 @@
         color: #c3bff7;
     }
 
+    textarea#contentBox {
+        flex-grow: 1;
+        width: 100%;
+        min-height: 250px;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-family: inherit;
+        resize: none;
+        box-sizing: border-box;
+        margin-top: 10px; 
+    }
+
 </style>
 
 @code {
     private BlogPost blog = new();
     private EditContext? editContext;
 
-    private Task OnContentChanged(string value)
-    {
-        blog.Content = value;
-        return Task.CompletedTask;
-    }
+    
+    private readonly Dictionary<string, object> contentBoxAttrs =
+        new() {
+            { "id",    "contentBox" },
+            { "style", "min-height:250px;" }
+            };
 
     protected override void OnInitialized()
+        => editContext = new EditContext(blog);
+
+    
+    private Task ApplyFormatAsync(string p, string s) =>
+        JS.InvokeVoidAsync("insertAround", "contentBox", p, s, false).AsTask();
+
+    private Task InsertLinkAsync() =>
+        JS.InvokeVoidAsync("insertAround", "contentBox",
+                           "[", "](https://)", true).AsTask();
+
+    
+   private async Task GoToDetails()
+{
+    if (editContext is null || !editContext.Validate()) return;
+
+    var prof = await ProfileService.GetProfileAsync(UserState.UserEmail);
+    blog.Author = prof?.Name ?? "Unknown";
+    blog.AuthorEmail = UserState.UserEmail;
+
+   
+    Nav.NavigateTo($"/upload-details?title={Uri.EscapeDataString(blog.Title)}" +
+                   $"&content={Uri.EscapeDataString(blog.Content)}"); 
+}
+
+
+    private static string ConvertSimpleMarkup(string? input)
     {
-        editContext = new EditContext(blog);
-    }
+        if (string.IsNullOrWhiteSpace(input)) return string.Empty;
 
-    private async Task GoToDetails()
-    {
-        if (editContext == null)
-            return;
+        var html = WebUtility.HtmlEncode(input);
 
-        var isValid = editContext.Validate();
-        if (!isValid)
-            return;
+       
+        html = Regex.Replace(html, @"\*\*(.+?)\*\*", "<strong>$1</strong>");
 
-        var profile = await ProfileService.GetProfileAsync(UserState.UserEmail);
-        blog.Author = profile?.Name ?? "Unknown";
-        blog.AuthorEmail = UserState.UserEmail;
+      
+        html = Regex.Replace(html,
+            @"(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)", 
+            "<em>$1</em>", RegexOptions.Singleline);
 
-        Nav.NavigateTo($"/upload-details?title={Uri.EscapeDataString(blog.Title)}&content={Uri.EscapeDataString(blog.Content)}");
+       
+        html = Regex.Replace(html, @"\[(.+?)\]\((.+?)\)",
+            "<a href=\"$2\" target=\"_blank\" rel=\"noopener\">$1</a>",
+            RegexOptions.Singleline);
+
+        return html.Replace("\r\n", "\n").Replace("\n", "<br>");
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await JS.InvokeVoidAsync("initResize");
+            await JS.InvokeVoidAsync("initResize"); 
         }
     }
 }
-
 <script>
     window.initResize = function () {
         const resizer = document.querySelector('.resizer');
@@ -243,5 +309,23 @@
         };
 
         resizer.addEventListener('mousedown', mouseDownHandler);
+    };
+
+    window.insertAround = function (id, pre, suf, isLink) {
+        const el = document.getElementById(id);
+        if (!el) return;
+
+        const start = el.selectionStart, end = el.selectionEnd;
+        const sel   = el.value.substring(start, end);
+        const txt   = isLink && !sel ? "link text" : sel;
+
+        el.setRangeText(pre + txt + suf, start, end, "end");
+
+        if (isLink && !sel) {
+            const p = start + 1;
+            el.setSelectionRange(p, p + 9);   
+        }
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+        el.focus();
     };
 </script>

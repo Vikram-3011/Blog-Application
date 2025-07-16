@@ -5,6 +5,11 @@
 @using BlogFront.Services
 @using Microsoft.AspNetCore.Components.Web
 @inject ISnackbar Snackbar
+@inject ProfileService ProfileSvc
+@inject UserStateManager UserState     
+@using BlogUser = BlogFront.Models.User
+@inject AdminServiceFront AdminService
+
 
 <div class="login-background"></div>
 
@@ -115,18 +120,19 @@
 
     private async Task HandleLogin()
     {
-        errorMessage = null;
-        var result = await AuthService.SignIn(email, password);
-        if (result == null)
-        {
-            Snackbar.Add("Login successful!", Severity.Success);
-            NavigationManager.NavigateTo("/home");
+        var err = await AuthService.SignIn(email, password);
+        if (err is not null) return;
 
-        }
-        else
-        {
-            Snackbar.Add(result, Severity.Error);
-        }
+        var profile = await ProfileSvc.GetProfileAsync(email);
+        var isAdmin = await AdminService.IsAdmin(email);       // ONE call, await it
+
+        UserState.SetUser(new BlogUser(email)
+            {
+                Name = profile?.Name,
+                IsAdmin = isAdmin
+            });
+
+        NavigationManager.NavigateTo("/home");
     }
 
     private void TogglePasswordVisibility()

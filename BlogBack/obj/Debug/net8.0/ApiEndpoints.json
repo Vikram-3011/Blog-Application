@@ -1,5 +1,89 @@
 [
   {
+    "ContainingType": "AdminController",
+    "Method": "Demote",
+    "RelativePath": "api/Admin/demote",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "targetEmail",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "requesterEmail",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "GetCurrentEmail",
+    "RelativePath": "api/Admin/get-current-email",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "IsAdmin",
+    "RelativePath": "api/Admin/is-admin/{email}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "IsSuperAdmin",
+    "RelativePath": "api/Admin/is-super-admin/{email}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "Promote",
+    "RelativePath": "api/Admin/promote",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "targetEmail",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "requesterEmail",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AuthController",
     "Method": "ChangePassword",
     "RelativePath": "api/Auth/change-password",
@@ -95,6 +179,11 @@
         "Name": "id",
         "Type": "System.Guid",
         "IsRequired": true
+      },
+      {
+        "Name": "requesterEmail",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -132,6 +221,11 @@
         "Name": "updatedBlog",
         "Type": "BlogBack.Models.BlogPost",
         "IsRequired": true
+      },
+      {
+        "Name": "requesterEmail",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

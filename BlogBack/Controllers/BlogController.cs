@@ -119,12 +119,34 @@ public class BlogController : ControllerBase
     }
 
     [HttpDelete("delete/{id}")]
-    public async Task<IActionResult> DeleteBlog(Guid id)
+    public async Task<IActionResult> DeleteBlog(Guid id, [FromQuery] string requesterEmail)
     {
-        await _client
+        await _client.InitializeAsync();
+
+        // Check if user is admin
+        var isAdmin = await _client
+            .From<Admin>()
+            .Filter("email", Operator.Equals, requesterEmail.ToLower())
+            .Get();
+
+        var isUserAdmin = isAdmin.Models.Any();
+
+        // Fetch the blog to verify ownership or allow admin
+        var result = await _client
             .From<BlogPost>()
-            .Where(b => b.Id == id)
-            .Delete();
+            .Filter("id", Operator.Equals, id.ToString())
+            .Get();
+
+        var blog = result.Models.FirstOrDefault();
+
+        if (blog == null)
+            return NotFound("Blog not found.");
+
+        if (!isUserAdmin && blog.AuthorEmail.ToLower() != requesterEmail.ToLower())
+            return Unauthorized("You are not allowed to delete this blog.");
+
+        // Delete from Supabase
+        await _client.From<BlogPost>().Where(b => b.Id == id).Delete();
 
         await _mongoService.DeleteBlogAsync(id);
 
@@ -134,8 +156,18 @@ public class BlogController : ControllerBase
 
 
     [HttpPut("update/{id}")]
-    public async Task<IActionResult> UpdateBlog(Guid id, [FromBody] BlogPost updatedBlog)
+    public async Task<IActionResult> UpdateBlog(Guid id, [FromBody] BlogPost updatedBlog, [FromQuery] string requesterEmail)
     {
+
+        await _client.InitializeAsync();
+
+        var isAdmin = await _client
+            .From<Admin>()
+            .Filter("email", Operator.Equals, requesterEmail.ToLower())
+            .Get();
+
+        var isUserAdmin = isAdmin.Models.Any();
+
         var existing = await _client
             .From<BlogPost>()
             .Filter("id", Operator.Equals, id.ToString())
@@ -144,6 +176,10 @@ public class BlogController : ControllerBase
         var blog = existing.Models.FirstOrDefault();
         if (blog == null)
             return NotFound("Blog not found");
+
+
+        if (!isUserAdmin && blog.AuthorEmail.ToLower() != requesterEmail.ToLower())
+            return Unauthorized("You are not allowed to update this blog.");
 
         // Update fields
         blog.Title = updatedBlog.Title;
@@ -170,10 +206,6 @@ public class BlogController : ControllerBase
 
         return Ok("Blog updated successfully.");
     }
-    
-
-
-
 }
 
 

@@ -42,13 +42,16 @@ namespace BlogFront.Services
             var response = await _http.GetFromJsonAsync<List<BlogPost>>($"api/blog/byuser/{email}");
             return response ?? new List<BlogPost>();
         }
-        public async Task DeleteBlogAsync(Guid id)
+        public async Task<bool> DeleteBlogAsync(Guid id, string requesterEmail)
+
         {
-            await _http.DeleteAsync($"api/blog/delete/{id}");
+            var response = await _http.DeleteAsync($"api/blog/delete/{id}?requesterEmail={Uri.EscapeDataString(requesterEmail)}");
+            return response.IsSuccessStatusCode;
         }
-        public async Task<string?> UpdateBlogAsync(BlogPost blog)
+
+        public async Task<string?> UpdateBlogAsync(BlogPost blog, string requesterEmail)
         {
-            var response = await _http.PutAsJsonAsync($"api/blog/update/{blog.Id}", blog);
+            var response = await _http.PutAsJsonAsync($"api/blog/update/{blog.Id}?requesterEmail={Uri.EscapeDataString(requesterEmail)}", blog);
             if (response.IsSuccessStatusCode)
                 return null;
 

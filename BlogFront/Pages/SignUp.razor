@@ -5,6 +5,8 @@
 @using BlogFront.Services
 @using Microsoft.AspNetCore.Components.Web
 @inject ISnackbar Snackbar
+@inject ProfileService ProfileSvc
+@using BlogFront.Models
 
 <div class="login-background"></div>
 
@@ -15,7 +17,11 @@
                 <MudText Typo="Typo.h4" Align="Align.Center">Create Account</MudText>
             </MudCardHeader>
 
+
             <MudCardContent>
+                <MudTextField @bind-Value="name"  Label="Name"  Required
+              Variant="Variant.Outlined" Class="white-input mb-3" />
+
                 <MudTextField T="string"
                               @bind-Value="email"
                               Label="Email"
@@ -109,6 +115,7 @@
 </style>
 
 @code {
+    private string name = "";
     private string email = "";
     private string password = "";
     private string? errorMessage;
@@ -140,13 +147,13 @@
 
     private async Task HandleSignUp()
     {
-        errorMessage = null;
-        var result = await AuthService.SignUp(email, password);
-        if (result == null)
-        {
-           
-            NavigationManager.NavigateTo("/");
-        }
-      
+        var err = await AuthService.SignUp(email, password);
+        if (err is not null) return;
+
+        var profile = new UserProfile { Email = email, Name = name };   // UserProfile now resolves
+        await ProfileSvc.SaveProfileAsync(profile);
+
+        Snackbar.Add("Account created! Please log in.", Severity.Success);
+        NavigationManager.NavigateTo("/");
     }
 }

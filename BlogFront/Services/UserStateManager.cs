@@ -10,6 +10,11 @@ namespace BlogFront.Services
         public BlogUser? User { get; private set; }
 
         public string? UserEmail => User?.Email;
+        public string? UserName => User?.Name;
+
+        public bool IsAdmin => User?.IsAdmin ?? false;
+
+        public bool IsSuperAdmin => User?.IsSuperAdmin ?? false;
 
         public event Action? OnChange;
 

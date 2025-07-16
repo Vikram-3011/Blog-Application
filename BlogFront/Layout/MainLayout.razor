@@ -1,7 +1,7 @@
 ﻿@inherits LayoutComponentBase
 @using MudBlazor
 @inject UserStateManager userState
-@inject AuthService AuthService
+@inject AuthService authService
 @inject IJSRuntime JSRuntime
 @using BlogFront.Pages
 @using BlogFront.Services
@@ -23,11 +23,15 @@
                     </MudTooltip>
                 </div>
             }
-            <div style="cursor: pointer;" @onclick="NavigateToCorrectPage">
-                <MudText Typo="Typo.h5" Class="@($"medium-title {GetTextColorClass()}")">
-                    BLOG APP
-                </MudText>
-            </div>
+            @if  (!userState.IsLoggedIn())
+            {
+                <div style="cursor: pointer;" @onclick="NavigateToCorrectPage">
+                    <MudText Typo="Typo.h5" Class="@($"medium-title {GetTextColorClass()}")">
+                        BLOG APP
+                    </MudText>
+                </div>
+            }
+           
 
 
             <div class="d-flex align-center" style="gap: 8px; margin-left: auto;">
@@ -59,7 +63,7 @@
 
             @if (userState.IsLoggedIn())
             {
-
+                <MudText Typo="Typo.h6" Class="mb-4"> @userState.UserName</MudText>
                 <MudText Typo="Typo.body2">@userState.User?.Email</MudText>
                 <MudDivider Class="my-2" />
                 <MudButton OnClick="@(() => NavigateTo("/profile"))" Variant="MudBlazor.Variant.Text" Style="justify-content: center; text-align: center; " FullWidth="true">Profile </MudButton>
@@ -76,7 +80,9 @@
    
 
     <MudDrawer Open="@isOpen" Variant="DrawerVariant.Persistent" Class="@NavMenuCss">
-        
+        <MudDrawerHeader>
+            <MudButton Typo="Typo.h4" OnClick="@(() => NavigateTo("/home"))" Class="medium-title">Blog App</MudButton>
+        </MudDrawerHeader>
         <NavMenu />
     </MudDrawer>
 
@@ -161,11 +167,23 @@
         Nav.NavigateTo(route);
     }
 
-    private async Task Logout()
+    public async void Logout()
     {
-        await AuthService.SignOut();
-        Nav.NavigateTo("/");
+        try
+        {
+            await authService.SignOut();           // ✅ Updated
+            userState.ClearUser();                 // ✅ Clear user info manually
+            Console.WriteLine("User logged out!");
+            StateHasChanged();
+            Nav.NavigateTo("/", true);  // ✅ Force reload
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Logout Error: {ex.Message}");
+        }
     }
+
+
     private Task RemoveClickListener() => Task.CompletedTask;
     private Task AddClickListener() => Task.CompletedTask;
 

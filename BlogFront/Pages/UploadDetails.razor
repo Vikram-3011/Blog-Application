@@ -9,6 +9,8 @@
 @using MudBlazor
 @using Microsoft.AspNetCore.Components.Forms
 @inject ISnackbar Snackbar
+@using Microsoft.AspNetCore.WebUtilities
+@using System.Net
 
 <!-- Background -->
 <div class="upload-background"></div>
@@ -111,8 +113,9 @@
     {
         var uri = Nav.ToAbsoluteUri(Nav.Uri);
         var query = QueryHelpers.ParseQuery(uri.Query);
+
         blog.Title = query["title"];
-        blog.Content = query["content"];
+        blog.Content = WebUtility.UrlDecode(query["content"]); // ✅ FIXED: Decode from query
 
         userProfile = await ProfileService.GetProfileAsync(UserState.UserEmail);
 
@@ -136,6 +139,7 @@
             return;
         }
 
+        blog.Content = ConvertSimpleMarkup(blog.Content);
         var error = await BlogService.UploadBlogAsync(blog);
         if (error == null)
         {
@@ -147,6 +151,28 @@
         {
             Snackbar.Add($" Error uploading blog: {error}", Severity.Error);
         }
+    }
+
+    private static string ConvertSimpleMarkup(string? input)
+    {
+        if (string.IsNullOrWhiteSpace(input)) return string.Empty;
+
+        var html = System.Net.WebUtility.HtmlEncode(input);
+
+        // Bold **text**
+        html = System.Text.RegularExpressions.Regex.Replace(html, @"\*\*(.+?)\*\*", "<strong>$1</strong>");
+
+        // Italic *text* (not inside bold)
+        html = System.Text.RegularExpressions.Regex.Replace(html,
+            @"(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)", "<em>$1</em>",
+            System.Text.RegularExpressions.RegexOptions.Singleline);
+
+        // Links [text](url)
+        html = System.Text.RegularExpressions.Regex.Replace(html, @"\[(.+?)\]\((.+?)\)",
+            "<a href=\"$2\" target=\"_blank\" rel=\"noopener\">$1</a>",
+            System.Text.RegularExpressions.RegexOptions.Singleline);
+
+        return html.Replace("\r\n", "\n").Replace("\n", "<br>");
     }
 
 }

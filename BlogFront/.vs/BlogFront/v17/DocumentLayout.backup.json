@@ -3,84 +3,96 @@
   "WorkspaceRootPath": "D:\\Project\\Blog App\\BlogFront\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\pages\\adminmanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:pages\\adminmanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\services\\profileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:services\\profileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\pages\\profile.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:pages\\profile.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\pages\\signup.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:pages\\signup.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\pages\\uploaddetails.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:pages\\uploaddetails.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\pages\\upload.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:pages\\upload.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\models\\userprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:models\\userprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\models\\blogpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:models\\blogpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\services\\blogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:services\\blogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\pages\\editblog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:pages\\editblog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\services\\adminservicefront.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:services\\adminservicefront.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\services\\userstatemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:services\\userstatemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\pages\\blogdetails.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:pages\\blogdetails.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\services\\userstatemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:services\\userstatemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\pages\\editblog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:pages\\editblog.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\services\\blogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:services\\blogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\pages\\upload.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:pages\\upload.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\pages\\unauthorized.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:pages\\unauthorized.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\pages\\uploaddetails.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:pages\\uploaddetails.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\models\\blogpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:models\\blogpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\pages\\signup.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:pages\\signup.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\services\\profileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:services\\profileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\models\\userprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|solutionrelative:models\\userprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C9465698-34B4-4FD8-A383-12E91D14C7BA}|BlogFront.csproj|d:\\project\\blog app\\blogfront\\blogfront.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -94,7 +106,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -106,159 +118,220 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Profile.razor",
-              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Pages\\Profile.razor",
-              "RelativeDocumentMoniker": "Pages\\Profile.razor",
-              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Pages\\Profile.razor*",
-              "RelativeToolTip": "Pages\\Profile.razor*",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAAA4AAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-03T13:38:29.537Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainLayout.razor",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Layout\\MainLayout.razor",
               "RelativeDocumentMoniker": "Layout\\MainLayout.razor",
-              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Layout\\MainLayout.razor*",
-              "RelativeToolTip": "Layout\\MainLayout.razor*",
-              "ViewState": "AgIAACwAAAAAAAAAAAAAAMgAAAAAAAAAAAAAAA==",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "Layout\\MainLayout.razor",
+              "ViewState": "AgIAADsAAAAAAAAAAAAiwEwAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-07-03T05:07:46.732Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAoAAAAiAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "AdminServiceFront.cs",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Services\\AdminServiceFront.cs",
+              "RelativeDocumentMoniker": "Services\\AdminServiceFront.cs",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Services\\AdminServiceFront.cs",
+              "RelativeToolTip": "Services\\AdminServiceFront.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-03T04:22:15.325Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Login.razor",
-              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Pages\\Login.razor",
-              "RelativeDocumentMoniker": "Pages\\Login.razor",
-              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Pages\\Login.razor",
-              "RelativeToolTip": "Pages\\Login.razor",
-              "ViewState": "AgIAADQAAAAAAAAAAAAjwEgAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-03T05:36:01.498Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SignUp.razor",
-              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Pages\\SignUp.razor",
-              "RelativeDocumentMoniker": "Pages\\SignUp.razor",
-              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Pages\\SignUp.razor",
-              "RelativeToolTip": "Pages\\SignUp.razor",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAAwJgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-03T05:37:20.649Z",
+              "WhenOpened": "2025-07-15T07:30:59.81Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Upload.razor",
-              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Pages\\Upload.razor",
-              "RelativeDocumentMoniker": "Pages\\Upload.razor",
-              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Pages\\Upload.razor",
-              "RelativeToolTip": "Pages\\Upload.razor",
-              "ViewState": "AgIAAFoAAAAAAAAAAAAAAGoAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-03T09:55:53.14Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UploadDetails.razor",
-              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Pages\\UploadDetails.razor",
-              "RelativeDocumentMoniker": "Pages\\UploadDetails.razor",
-              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Pages\\UploadDetails.razor",
-              "RelativeToolTip": "Pages\\UploadDetails.razor",
-              "ViewState": "AgIAADUAAAAAAAAAAAAAAEAAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-04T09:59:24.17Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProfileService.cs",
-              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Services\\ProfileService.cs",
-              "RelativeDocumentMoniker": "Services\\ProfileService.cs",
-              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Services\\ProfileService.cs*",
-              "RelativeToolTip": "Services\\ProfileService.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-03T13:37:48.485Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "NavMenu.razor",
-              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Layout\\NavMenu.razor",
-              "RelativeDocumentMoniker": "Layout\\NavMenu.razor",
-              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Layout\\NavMenu.razor",
-              "RelativeToolTip": "Layout\\NavMenu.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAABRAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-10T05:24:23.948Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Services\\AuthService.cs",
-              "RelativeDocumentMoniker": "Services\\AuthService.cs",
-              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Services\\AuthService.cs",
-              "RelativeToolTip": "Services\\AuthService.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAAwCoAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-03T05:25:07.37Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "UserProfile.cs",
-              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Models\\UserProfile.cs",
-              "RelativeDocumentMoniker": "Models\\UserProfile.cs",
-              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Models\\UserProfile.cs",
-              "RelativeToolTip": "Models\\UserProfile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-03T13:36:59.912Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Models\\User.cs",
               "RelativeDocumentMoniker": "Models\\User.cs",
               "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Models\\User.cs",
               "RelativeToolTip": "Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-03T05:23:46.682Z"
+              "WhenOpened": "2025-07-03T05:23:46.682Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-03T04:22:15.325Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Profile.razor",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Pages\\Profile.razor",
+              "RelativeDocumentMoniker": "Pages\\Profile.razor",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Pages\\Profile.razor",
+              "RelativeToolTip": "Pages\\Profile.razor",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-03T13:38:29.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Home.razor",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "Pages\\Home.razor",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Pages\\Home.razor",
+              "RelativeToolTip": "Pages\\Home.razor",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-03T05:40:36.921Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "Services\\AuthService.cs",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Services\\AuthService.cs",
+              "RelativeToolTip": "Services\\AuthService.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAA0wG4AAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-03T05:25:07.37Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AdminManagement.razor",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Pages\\AdminManagement.razor",
+              "RelativeDocumentMoniker": "Pages\\AdminManagement.razor",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Pages\\AdminManagement.razor",
+              "RelativeToolTip": "Pages\\AdminManagement.razor",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABwAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-15T10:09:10.404Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserStateManager.cs",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Services\\UserStateManager.cs",
+              "RelativeDocumentMoniker": "Services\\UserStateManager.cs",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Services\\UserStateManager.cs",
+              "RelativeToolTip": "Services\\UserStateManager.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAYwBAAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-03T05:23:07.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "Layout\\NavMenu.razor",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "Layout\\NavMenu.razor",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-10T05:24:23.948Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
+              "Title": "EditBlog.razor",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Pages\\EditBlog.razor",
+              "RelativeDocumentMoniker": "Pages\\EditBlog.razor",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Pages\\EditBlog.razor",
+              "RelativeToolTip": "Pages\\EditBlog.razor",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAjwIwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-06T14:26:31.31Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "BlogService.cs",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Services\\BlogService.cs",
+              "RelativeDocumentMoniker": "Services\\BlogService.cs",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Services\\BlogService.cs",
+              "RelativeToolTip": "Services\\BlogService.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAnwC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-03T09:42:44.084Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Upload.razor",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Pages\\Upload.razor",
+              "RelativeDocumentMoniker": "Pages\\Upload.razor",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Pages\\Upload.razor",
+              "RelativeToolTip": "Pages\\Upload.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-03T09:55:53.14Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "BlogDetails.razor",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Pages\\BlogDetails.razor",
+              "RelativeDocumentMoniker": "Pages\\BlogDetails.razor",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Pages\\BlogDetails.razor",
+              "RelativeToolTip": "Pages\\BlogDetails.razor",
+              "ViewState": "AgIAAB4AAAAAAAAAAADgvywAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-06T12:08:12.079Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Unauthorized.razor",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Pages\\Unauthorized.razor",
+              "RelativeDocumentMoniker": "Pages\\Unauthorized.razor",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Pages\\Unauthorized.razor",
+              "RelativeToolTip": "Pages\\Unauthorized.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-15T10:10:19.136Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "UploadDetails.razor",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Pages\\UploadDetails.razor",
+              "RelativeDocumentMoniker": "Pages\\UploadDetails.razor",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Pages\\UploadDetails.razor",
+              "RelativeToolTip": "Pages\\UploadDetails.razor",
+              "ViewState": "AgIAABcAAAAAAAAAAADwv5cAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-04T09:59:24.17Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Login.razor",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Pages\\Login.razor",
+              "RelativeDocumentMoniker": "Pages\\Login.razor",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Pages\\Login.razor",
+              "RelativeToolTip": "Pages\\Login.razor",
+              "ViewState": "AgIAAH4AAAAAAAAAAADwv6EAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-03T05:36:01.498Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "BlogPost.cs",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Models\\BlogPost.cs",
               "RelativeDocumentMoniker": "Models\\BlogPost.cs",
@@ -270,19 +343,43 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "BlogService.cs",
-              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Services\\BlogService.cs",
-              "RelativeDocumentMoniker": "Services\\BlogService.cs",
-              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Services\\BlogService.cs",
-              "RelativeToolTip": "Services\\BlogService.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAiwDsAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 19,
+              "Title": "ProfileService.cs",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Services\\ProfileService.cs",
+              "RelativeDocumentMoniker": "Services\\ProfileService.cs",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Services\\ProfileService.cs",
+              "RelativeToolTip": "Services\\ProfileService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-03T09:42:44.084Z"
+              "WhenOpened": "2025-07-03T13:37:48.485Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
+              "Title": "SignUp.razor",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Pages\\SignUp.razor",
+              "RelativeDocumentMoniker": "Pages\\SignUp.razor",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Pages\\SignUp.razor",
+              "RelativeToolTip": "Pages\\SignUp.razor",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAAAJ0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-03T05:37:20.649Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "index.html",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\wwwroot\\index.html",
+              "RelativeDocumentMoniker": "wwwroot\\index.html",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\wwwroot\\index.html",
+              "RelativeToolTip": "wwwroot\\index.html",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAswCcAAABfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-07-10T09:50:26.071Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
               "Title": "_Imports.razor",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\_Imports.razor",
               "RelativeDocumentMoniker": "_Imports.razor",
@@ -294,67 +391,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "EditBlog.razor",
-              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Pages\\EditBlog.razor",
-              "RelativeDocumentMoniker": "Pages\\EditBlog.razor",
-              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Pages\\EditBlog.razor",
-              "RelativeToolTip": "Pages\\EditBlog.razor",
-              "ViewState": "AgIAABIAAAAAAAAAAAAjwBwAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-06T14:26:31.31Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "index.html",
-              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\wwwroot\\index.html",
-              "RelativeDocumentMoniker": "wwwroot\\index.html",
-              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\wwwroot\\index.html",
-              "RelativeToolTip": "wwwroot\\index.html",
-              "ViewState": "AgIAABkAAAAAAAAAAAAswCgAAABzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-07-10T09:50:26.071Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Home.razor",
-              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Pages\\Home.razor",
-              "RelativeDocumentMoniker": "Pages\\Home.razor",
-              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Pages\\Home.razor",
-              "RelativeToolTip": "Pages\\Home.razor",
-              "ViewState": "AgIAABgAAAAAAAAAAAAjwCUAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-03T05:40:36.921Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "BlogDetails.razor",
-              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Pages\\BlogDetails.razor",
-              "RelativeDocumentMoniker": "Pages\\BlogDetails.razor",
-              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Pages\\BlogDetails.razor",
-              "RelativeToolTip": "Pages\\BlogDetails.razor",
-              "ViewState": "AgIAABEAAAAAAAAAAAAjwBkAAABeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-06T12:08:12.079Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "UserStateManager.cs",
-              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Services\\UserStateManager.cs",
-              "RelativeDocumentMoniker": "Services\\UserStateManager.cs",
-              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Services\\UserStateManager.cs",
-              "RelativeToolTip": "Services\\UserStateManager.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAkwBQAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 22,
+              "Title": "UserProfile.cs",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\Models\\UserProfile.cs",
+              "RelativeDocumentMoniker": "Models\\UserProfile.cs",
+              "ToolTip": "D:\\Project\\Blog App\\BlogFront\\Models\\UserProfile.cs",
+              "RelativeToolTip": "Models\\UserProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-03T05:23:07.29Z"
+              "WhenOpened": "2025-07-03T13:36:59.912Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 23,
               "Title": "BlogFront.csproj",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogFront\\BlogFront.csproj",
               "RelativeDocumentMoniker": "BlogFront.csproj",
