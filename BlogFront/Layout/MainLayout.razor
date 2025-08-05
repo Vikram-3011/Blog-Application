@@ -38,7 +38,7 @@
 
                 @if (userState.IsLoggedIn())
                 {
-                    <MudButton Variant="MudBlazor.Variant.Text" Class="@GetTextColorClass()" OnClick="@(() => Nav.NavigateTo("/upload"))">
+                    <MudButton Variant="MudBlazor.Variant.Filled" Color="Color.Info" Class="@GetTextColorClass()" OnClick="@(() => Nav.NavigateTo("/upload"))">
                         Write
            </MudButton>
                 }

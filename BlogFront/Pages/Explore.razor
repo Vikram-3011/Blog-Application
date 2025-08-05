@@ -1,0 +1,212 @@
+﻿@page "/explore"
+@inject BlogService BlogService
+@inject NavigationManager Nav
+
+@using BlogFront.Models
+@using MudBlazor
+
+<div class="explore-background"></div>
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="explore-container">
+
+    <MudGrid>
+        <!-- Left Sidebar: Tags -->
+        <MudItem xs="12" sm="4" md="3">
+            <MudPaper Class="p-4 rounded tag-list">
+                <MudText Typo="Typo.h6" Class="mb-2">Filter by Tag</MudText>
+                <MudList T="string" Dense="true">
+                    <MudListItem Class="@GetTagClass("All")" @onclick="@(() => LoadBlogsByTag("All"))">
+                        <MudText>All</MudText>
+                    </MudListItem>
+                    @foreach (var tag in allTags)
+                    {
+                        <MudListItem Class="@GetTagClass(tag)" @onclick="@(() => LoadBlogsByTag(tag))">
+                            <MudText>@tag</MudText>
+                        </MudListItem>
+                    }
+                </MudList>
+            </MudPaper>
+        </MudItem>
+
+        <!-- Right Content: Vertical Blogs List -->
+        <MudItem xs="12" sm="8" md="9">
+            <MudText Typo="Typo.h4" Class="mb-4 text-center text-deep-purple-accent-4">Explore Blogs</MudText>
+
+            @if (isLoading)
+            {
+                <MudProgressCircular Indeterminate="true" Color="Color.Primary" />
+            }
+            else if (filteredBlogs?.Any() == true)
+            {
+                <MudStack Spacing="2">
+                    @foreach (var blog in filteredBlogs)
+                    {
+                        <MudItem xs="12">
+                            <MudCard Class="blog-card mb-4" Style="cursor:pointer;" @onclick="@(() => GoToBlog(blog.Id))">
+                                <MudCardContent>
+                                    <MudText Typo="Typo.h5" Class="title">@blog.Title</MudText>
+                                    <MudText Typo="Typo.subtitle2" Color="Color.Secondary">By @blog.Author</MudText>
+                                    <MudText Typo="Typo.body2" Class="description mt-2">
+                                        @blog.Description
+                                    </MudText>
+                                </MudCardContent>
+                            </MudCard>
+                        </MudItem>
+
+                    }
+                </MudStack>
+            }
+            else
+            {
+                <MudText Typo="Typo.subtitle1" Color="Color.Error">
+                    No blogs found with selected tag.
+                </MudText>
+            }
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .explore-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('/Images/tech 7.jpg'); /* Match Home */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        z-index: -1;
+    }
+
+    .explore-container {
+        padding-top: 3rem;
+        padding-bottom: 4rem;
+        color: white;
+    }
+
+    .blog-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        color: black;
+        padding: 1.5rem;
+        border-radius: 16px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+        transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+    .tag-list {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(8px);
+        border-radius: 12px;
+    }
+
+    .text-deep-purple-accent-4 {
+        color: #7C4DFF;
+    }
+
+   
+    .title {
+        font-weight: 600;
+        font-size: 1.25rem;
+        color: #1A237E;
+        margin-bottom: 0.25rem;
+    }
+
+    .description {
+        font-size: 1.05rem;
+        color: #37474F;
+    }
+
+    .blog-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        padding: 1.5rem;
+        border-radius: 16px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .blog-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+
+</style>
+
+
+@code {
+    private List<Blog> filteredBlogs = new();
+    private List<string> allTags = new();
+    private string selectedTag = "All";
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        isLoading = true;
+        try
+        {
+            var allBlogs = await BlogService.GetAllBlogsAsync();
+
+            allTags = allBlogs
+                .SelectMany(b => b.Tags ?? new List<string>())
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .OrderBy(tag => tag)
+                .ToList();
+
+            // Provide default tags if none found
+            if (!allTags.Any())
+            {
+                allTags = new List<string>
+                {
+                    "Programming", "Design", "AI", "Nature", "Science", "Technology", "Travel", "Gaming"
+                };
+            }
+
+            await LoadBlogsByTag("All");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading blogs: {ex.Message}");
+        }
+        isLoading = false;
+    }
+
+    private async Task LoadBlogsByTag(string tag)
+    {
+        selectedTag = tag;
+        isLoading = true;
+        filteredBlogs = await BlogService.GetBlogsByTagAsync(tag.ToLower());
+        isLoading = false;
+
+        if (filteredBlogs == null || !filteredBlogs.Any())
+        {
+            Console.WriteLine($"No blogs found with tag: {tag}");
+        }
+
+        StateHasChanged();
+    }
+
+
+    private void GoToBlog(string blogId)
+    {
+        Nav.NavigateTo($"/blog/{blogId}");
+    }
+
+    private string GetTagClass(string tag)
+    {
+        return selectedTag == tag ? "bg-deep-purple-100 text-deep-purple font-bold" : "";
+    }
+}

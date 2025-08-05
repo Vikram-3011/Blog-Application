@@ -1,4 +1,5 @@
-﻿using BlogFront.Services;
+﻿using BlogFront.Models;
+using BlogFront.Services;
 using System.Net.Http.Json;
 
 public class AdminServiceFront
@@ -36,6 +37,17 @@ public class AdminServiceFront
 
         if (!response.IsSuccessStatusCode)
             throw new Exception(await response.Content.ReadAsStringAsync());
+    }
+
+    public async Task<List<UserProfileDto>> GetAllUserProfiles()
+    {
+        return await _http.GetFromJsonAsync<List<UserProfileDto>>("api/admin/all-users");
+    }
+
+    public async Task<List<string>> GetAllAdminEmails()
+    {
+        return await _http.GetFromJsonAsync<List<string>>("api/admin/admin-emails")
+               ?? new List<string>();
     }
 
 

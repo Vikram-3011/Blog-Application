@@ -15,5 +15,8 @@ namespace BlogBack.Models
         public string Author { get; set; } = string.Empty;
         public string AuthorEmail { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
+
+        [BsonElement("tags")]
+        public List<string>? Tags { get; set; } = new(); // ✅ Add this line
     }
 }

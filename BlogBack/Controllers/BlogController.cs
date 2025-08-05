@@ -32,7 +32,10 @@ public class BlogController : ControllerBase
     public async Task<IActionResult> UploadBlog([FromBody] BlogPost blog)
     {
         // 1. Store in Supabase
-    await _client.From<BlogPost>().Insert(blog);
+
+        blog.Tags = blog.Tags?.Select(t => t.ToLower()).ToList();
+
+        await _client.From<BlogPost>().Insert(blog);
 
     // 2. Store same blog in MongoDB
     var mongoBlog = new MongoBlog
@@ -43,7 +46,8 @@ public class BlogController : ControllerBase
         Description = blog.Description,
         Author = blog.Author,
         AuthorEmail = blog.AuthorEmail,
-        CreatedAt = blog.CreatedAt
+        CreatedAt = blog.CreatedAt,
+        Tags = blog.Tags // ✅ Add this line
     };
 
     await _mongoService.StoreBlogAsync(mongoBlog);
@@ -65,8 +69,9 @@ public class BlogController : ControllerBase
             AuthorEmail = b.AuthorEmail,
             CreatedAt = b.CreatedAt,
             Description = b.Description,
-            
+            Tags = b.Tags // ✅ Add this line
         }).ToList();
+
 
         return Ok(blogs);
     }
@@ -90,8 +95,10 @@ public class BlogController : ControllerBase
             Author = blog.Author,
             AuthorEmail = blog.AuthorEmail,
             CreatedAt = blog.CreatedAt,
-            Description = blog.Description
+            Description = blog.Description,
+            Tags = blog.Tags // ✅ Add this line
         };
+
 
         return Ok(dto);
     }
@@ -112,8 +119,10 @@ public class BlogController : ControllerBase
             Content = b.Content,
             Author = b.Author,
             AuthorEmail = b.AuthorEmail,
-            CreatedAt = b.CreatedAt
+            CreatedAt = b.CreatedAt,
+            Tags = b.Tags // ✅ Add this line
         }).ToList();
+
 
         return Ok(blogs);
     }
@@ -206,6 +215,40 @@ public class BlogController : ControllerBase
 
         return Ok("Blog updated successfully.");
     }
+    [HttpGet("bytag")]
+    public async Task<IActionResult> GetBlogsByTag([FromQuery] string tag)
+    {
+        if (string.IsNullOrWhiteSpace(tag) || tag.ToLower() == "all")
+        {
+            return await GetAllBlogs();
+        }
+
+
+        var lowerTag = tag.ToLower();
+
+        // 🔥 Wrap tag as array to use "contains" operator correctly
+        var result = await _client
+            .From<BlogPost>()
+            .Filter("tags", Operator.Contains, new List<string> { lowerTag })
+            .Get();
+
+        var blogs = result.Models.Select(b => new BlogPostDto
+        {
+            Id = b.Id,
+            Title = b.Title,
+            Content = b.Content,
+            Author = b.Author,
+            AuthorEmail = b.AuthorEmail,
+            CreatedAt = b.CreatedAt,
+            Description = b.Description,
+            Tags = b.Tags
+        }).ToList();
+
+        return Ok(blogs);
+    }
+
+
+
 }
 
 

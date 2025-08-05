@@ -4,6 +4,7 @@ using Supabase;
 using BlogBack.Models;
 using static Supabase.Postgrest.Constants;
 using BlogBack.Services;
+using Supabase.Gotrue;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -11,6 +12,7 @@ public class AdminController : ControllerBase
 {
     private readonly Supabase.Client _client;
     private readonly AdminService _adminService;
+
     public AdminController(IOptions<SupabaseConfig> config)
     {
         var options = new SupabaseOptions { AutoConnectRealtime = false };
@@ -75,6 +77,34 @@ public class AdminController : ControllerBase
     }
 
 
+    [HttpGet("all-users")]
+    public async Task<IActionResult> GetAllUserProfiles()
+    {
+        var users = await _client.From<UserProfile>().Get();
+
+        var userDtos = users.Models.Select(u => new UserProfileDto
+        {
+            Id = u.Id,
+            Email = u.Email,
+            Name = u.Name,
+            Age = u.Age,
+            Bio = u.Bio,
+            CreatedAt = u.CreatedAt
+        }).ToList();
+
+        return Ok(userDtos);
+    }
+
+    [HttpGet("admin-emails")]
+    public async Task<ActionResult<List<string>>> GetAdminEmails()
+    {
+        var response = await _client
+            .From<Admin>()
+            .Get();
+
+        var adminEmails = response.Models.Select(a => a.Email).ToList();
+        return Ok(adminEmails);
+    }
 
 
 }

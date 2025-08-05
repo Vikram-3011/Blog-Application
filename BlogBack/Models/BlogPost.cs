@@ -30,5 +30,8 @@ namespace BlogBack.Models
 
         [Column("created_at")]
         public DateTime CreatedAt { get; set; }
+
+        [Column("tags")]
+        public List<string> Tags { get; set; } = new(); // ✅ ADD THIS
     }
 }

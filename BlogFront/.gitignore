@@ -1,0 +1,31 @@
+# Ignore Visual Studio files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore build outputs
+bin/
+obj/
+out/
+
+# Ignore logs
+*.log
+
+# Ignore temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# Ignore publish folder if you have one
+publish/
+
+# Ignore compressed outputs
+*.gz
+*.zip
+
+# Ignore IDE-specific folders
+BlogFront/.vs/
+BlogBack/.vs/

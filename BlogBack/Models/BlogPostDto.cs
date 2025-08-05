@@ -9,5 +9,6 @@
         public string AuthorEmail { get; set; } = string.Empty; // ✅ ADD THIS LINE
         public string Description { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
+        public List<string> Tags { get; set; } = new(); // ✅ Add this
     }
 }

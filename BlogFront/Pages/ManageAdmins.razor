@@ -1,0 +1,156 @@
+﻿@page "/manage-admins"
+@inject AdminServiceFront AdminService
+@inject UserStateManager UserState
+@inject ISnackbar Snackbar
+@using MudBlazor
+@using BlogFront.Models
+
+<div class="home-background"></div>
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-10">
+    <MudPaper Class="p-8 glassmorphism" Elevation="12" Style="border-radius: 20px;">
+        <MudText Typo="Typo.h4" Class="font-bold text-center mt-4 mb-6"> Admin Role Management</MudText>
+
+        @if (!UserState.IsSuperAdmin)
+        {
+            <MudAlert Severity="Severity.Error" Variant="Variant.Filled">
+                Only super admins can manage user roles.
+            </MudAlert>
+        }
+        else if (isLoading)
+        {
+            <MudProgressCircular Color="Color.Primary" Indeterminate="true" Size="Size.Medium" Class="mx-auto my-8" />
+        }
+        else if (userList.Count == 0)
+        {
+            <MudText Typo="Typo.subtitle1" Class="text-center mt-6">No users available to manage.</MudText>
+        }
+        else
+        {
+            <MudTextField @bind-Value="searchTerm" Label="Search by name or email..."
+                          Variant="Variant.Outlined" Immediate="true" 
+                          Class="mb-4 mr-10 m-lg-5  mt-5" />
+
+            <MudTable Items="@filteredUsers" Hover="true" Bordered="true" Striped="true" Elevation="2">
+                <HeaderContent>
+                    <MudTh><MudIcon Icon="@Icons.Material.Filled.Person" /> Name</MudTh>
+                    <MudTh><MudIcon Icon="@Icons.Material.Filled.Email" /> Email</MudTh>
+                    <MudTh><MudIcon /> Action</MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd>@context.Name</MudTd>
+                    <MudTd>@context.Email</MudTd>
+                    <MudTd>
+                        @if (IsUserAdmin(context.Email))
+                        {
+                            <MudButton Color="Color.Error" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.RemoveModerator"
+                                       OnClick="@(() => Demote(context.Email))">
+                                Demote
+                            </MudButton>
+                        }
+                        else
+                        {
+                            <MudButton Color="Color.Primary" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Upgrade"
+                                       OnClick="@(() => Promote(context.Email))">
+                                Promote
+                            </MudButton>
+                        }
+                    </MudTd>
+                </RowTemplate>
+            </MudTable>
+        }
+    </MudPaper>
+</MudContainer>
+
+<style>
+    .glassmorphism {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .home-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('/Images/tech 7.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        z-index: -1;
+    }
+</style>
+
+@code {
+    private List<UserProfileDto> userList = new();
+    private List<string> adminEmails = new();
+    private bool isLoading = true;
+    private string searchTerm = string.Empty;
+
+    private IEnumerable<UserProfileDto> filteredUsers =>
+        userList.Where(u =>
+            string.IsNullOrWhiteSpace(searchTerm) ||
+            (u.Name?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ?? false) ||
+            (u.Email?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ?? false)
+        );
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            if (!UserState.IsSuperAdmin) return;
+
+            isLoading = true;
+
+            var allUsers = await AdminService.GetAllUserProfiles();
+            var superAdminEmail = UserState.UserEmail?.Trim().ToLower();
+
+            userList = allUsers
+                .Where(u => !string.Equals(u.Email?.Trim().ToLower(), superAdminEmail, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            adminEmails = await AdminService.GetAllAdminEmails();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Failed to load data: {ex.Message}", Severity.Error);
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private bool IsUserAdmin(string email) =>
+        adminEmails.Contains(email, StringComparer.OrdinalIgnoreCase);
+
+    private async Task Promote(string email)
+    {
+        try
+        {
+            await AdminService.PromoteAsync(email);
+            adminEmails.Add(email);
+            Snackbar.Add("✅ User promoted to admin.", Severity.Success);
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"❌ Promotion failed: {ex.Message}", Severity.Error);
+        }
+    }
+
+    private async Task Demote(string email)
+    {
+        try
+        {
+            await AdminService.DemoteAsync(email);
+            adminEmails.Remove(email);
+            Snackbar.Add("⚠️ User demoted from admin.", Severity.Warning);
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"❌ Demotion failed: {ex.Message}", Severity.Error);
+        }
+    }
+}

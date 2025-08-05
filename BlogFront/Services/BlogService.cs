@@ -3,6 +3,8 @@ using BlogFront.Pages;
 using BlogFront.Models;
 
 using System.Net.Http.Json;
+using System.Net.Http;
+using System.Text.Json;
 
 namespace BlogFront.Services
 {
@@ -57,6 +59,38 @@ namespace BlogFront.Services
 
             return await response.Content.ReadAsStringAsync();
         }
+
+        public async Task<List<Blog>> GetAllBlogsAsync()
+        {
+            var response = await _http.GetAsync("api/blog");
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                return JsonSerializer.Deserialize<List<Blog>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            }
+
+            return new List<Blog>();
+        }
+
+        public async Task<List<Blog>> GetBlogsByTagAsync(string tag)
+        {
+            string url = string.IsNullOrEmpty(tag) || tag.ToLower() == "all"
+                ? "api/blog/all"
+                : $"api/blog/bytag?tag={Uri.EscapeDataString(tag)}";
+
+            var response = await _http.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                return JsonSerializer.Deserialize<List<Blog>>(content, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                }) ?? new List<Blog>();
+            }
+
+            return new List<Blog>();
+        }
+
 
     }
 }
