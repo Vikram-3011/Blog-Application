@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BlogBack")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b7e2bc62dca807494f3e68b354619682bcf9719")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a0089828cf219e30c6fae1bbeefd7c86bfbb3841")]
 [assembly: System.Reflection.AssemblyProductAttribute("BlogBack")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BlogBack")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
