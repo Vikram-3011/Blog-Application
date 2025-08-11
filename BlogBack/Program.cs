@@ -32,7 +32,7 @@ builder.Services.AddSingleton(sp =>
     return client;
 });
 
-builder.Services.AddScoped<AdminService>();        // <� our helper service
+builder.Services.AddScoped<AdminService>();        // <— our helper service
 builder.Services.AddHttpContextAccessor();         // required to read caller email
 
 
@@ -76,5 +76,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// ✅ Add this root endpoint to avoid 404 on `/`
+app.MapGet("/", () => Results.Ok("Backend is running successfully on Render!"));
 
 app.Run();
