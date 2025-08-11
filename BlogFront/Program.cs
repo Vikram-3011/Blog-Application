@@ -17,7 +17,6 @@ builder.Services.AddScoped<AdminServiceFront>();   // ⬅️ add this
 
 
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://blog-application-2-qnhw.onrender.com/   
-") });
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://blog-application-2-qnhw.onrender.com/") });
 
 await builder.Build().RunAsync();
