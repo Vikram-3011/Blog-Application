@@ -3,14 +3,14 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # Copy only the project file first to leverage Docker's build cache
-COPY BlogBack/BlogBack.csproj BlogBack/
-RUN dotnet restore BlogBack/BlogBack.csproj
+COPY BlogBack.csproj .
+RUN dotnet restore BlogBack.csproj
 
 # Copy the rest of the backend source code
-COPY BlogBack/ BlogBack/
+COPY . .
 
 # Publish the app
-RUN dotnet publish BlogBack/BlogBack.csproj -c Release -o /app/publish
+RUN dotnet publish BlogBack.csproj -c Release -o /app/publish
 
 # Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
