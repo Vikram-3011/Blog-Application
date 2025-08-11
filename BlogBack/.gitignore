@@ -29,3 +29,6 @@ publish/
 # Ignore IDE-specific folders
 BlogFront/.vs/
 BlogBack/.vs/
+
+appsettings.json
+appsettings.*.json
