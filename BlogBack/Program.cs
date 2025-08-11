@@ -53,10 +53,10 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("https://blog-application-6-7axi.onrender.com") // NO trailing slash
+        policy.WithOrigins("https://blog-application-6-7axi.onrender.com/")
               .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials(); // Add if frontend sends auth cookies or credentials
+              .AllowAnyMethod();
+
     });
 });
 
