@@ -32,7 +32,7 @@ builder.Services.AddSingleton(sp =>
     return client;
 });
 
-builder.Services.AddScoped<AdminService>();        // <— our helper service
+builder.Services.AddScoped<AdminService>();        // <â€” our helper service
 builder.Services.AddHttpContextAccessor();         // required to read caller email
 
 
@@ -53,7 +53,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("https://localhost:7167")
+        policy.WithOrigins("https://blog-application-6-7axi.onrender.com/")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
