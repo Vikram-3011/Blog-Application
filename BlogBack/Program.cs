@@ -53,7 +53,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("https://blog-application-6-7axi.onrender.com/")
+        policy.WithOrigins("https://blog-application-6-7axi.onrender.com")
               .AllowAnyHeader()
               .AllowAnyMethod();
 
