@@ -20,4 +20,4 @@ COPY --from=build /app/publish .
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
 
-ENTRYPOINT ["dotnet", "BlogBack.dll"]
+ENTRYPOINT ["dotnet", "BlogBack.dll"]	

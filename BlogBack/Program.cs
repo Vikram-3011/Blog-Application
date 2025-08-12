@@ -53,9 +53,10 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("https://localhost:7167")
+        policy.WithOrigins("https://blog-application-6-7axi.onrender.com/")
               .AllowAnyHeader()
               .AllowAnyMethod();
+
     });
 });
 var app = builder.Build();
@@ -76,5 +77,9 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+
+// ? Add this root endpoint to avoid 404 on `/`
+app.MapGet("/", () => Results.Ok("Backend is running successfully on Render!"));
 
 app.Run();
