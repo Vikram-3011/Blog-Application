@@ -25,7 +25,7 @@ if (config is null || string.IsNullOrWhiteSpace(config.ApiBaseUrl))
     throw new Exception("ApiBaseUrl is missing in appsettings.json");
 }
 
-// Register HttpClient with ApiBaseUrl from config
+
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(config.ApiBaseUrl) });
 
 await builder.Build().RunAsync();

@@ -32,7 +32,7 @@ builder.Services.AddSingleton(sp =>
     return client;
 });
 
-builder.Services.AddScoped<AdminService>();        // <— our helper service
+builder.Services.AddScoped<AdminService>();        // <â€” our helper service
 builder.Services.AddHttpContextAccessor();         // required to read caller email
 
 
@@ -53,12 +53,17 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
+<<<<<<< HEAD
         policy.WithOrigins("https://blog-application-6-7axi.onrender.com/")
+=======
+        policy.WithOrigins("https://blog-application-6-7axi.onrender.com")
+>>>>>>> c9d1856c69af8abcce6e6874ff9b139ff2a5479a
               .AllowAnyHeader()
               .AllowAnyMethod();
 
     });
 });
+
 var app = builder.Build();
 
 
@@ -79,7 +84,11 @@ app.UseAuthorization();
 app.MapControllers();
 
 
+<<<<<<< HEAD
 // ? Add this root endpoint to avoid 404 on `/`
 app.MapGet("/", () => Results.Ok("Backend is running successfully on Render!"));
 
+=======
+app.MapGet("/", () => Results.Ok("Backend is running successfully on Render!"));
+>>>>>>> c9d1856c69af8abcce6e6874ff9b139ff2a5479a
 app.Run();
