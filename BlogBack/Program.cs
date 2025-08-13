@@ -49,20 +49,7 @@ builder.Services
         };
     });
 
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(policy =>
-    {
-        policy
-            .WithOrigins(
-                "https://blog-application-6-7axi.onrender.com", 
-                "https://blog-application-6-7axi.onrender.com/",
-                "https://localhost:7167/"
-            )
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-    });
-});
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
