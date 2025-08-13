@@ -63,6 +63,23 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
     });
 });
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy
+            .WithOrigins(
+                "https://blog-application-6-7axi.onrender.com",
+                "https://blog-application-6-7axi.onrender.com/",// your production frontend
+                "https://localhost:7167", // local Blazor HTTPS
+                "http://localhost:7167",  // local Blazor HTTP
+                "http://localhost:5000",  // if backend dev server
+                "https://localhost:5001"  // if backend dev server HTTPS
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 
 
 
