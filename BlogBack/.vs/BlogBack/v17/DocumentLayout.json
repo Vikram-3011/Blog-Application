@@ -121,8 +121,7 @@
               "RelativeToolTip": "Models\\BlogPostDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABSAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-03T12:49:14.755Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-03T12:49:14.755Z"
             },
             {
               "$type": "Document",
@@ -134,8 +133,7 @@
               "RelativeToolTip": "Models\\BlogPost.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAADwvyUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-03T09:17:25.523Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-03T09:17:25.523Z"
             },
             {
               "$type": "Document",
@@ -147,8 +145,7 @@
               "RelativeToolTip": "Controllers\\UserProfileController.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-03T13:36:03.871Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-03T13:36:03.871Z"
             },
             {
               "$type": "Document",
@@ -160,8 +157,7 @@
               "RelativeToolTip": "Controllers\\FollowedAuthorsController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T09:21:50.019Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-24T09:21:50.019Z"
             },
             {
               "$type": "Document",
@@ -173,8 +169,7 @@
               "RelativeToolTip": "Controllers\\BlogController.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-03T09:10:24.719Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-03T09:10:24.719Z"
             },
             {
               "$type": "Document",
@@ -186,8 +181,7 @@
               "RelativeToolTip": "Controllers\\AuthController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-03T05:17:10.289Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-03T05:17:10.289Z"
             },
             {
               "$type": "Document",
@@ -199,8 +193,7 @@
               "RelativeToolTip": "Controllers\\AdminController.cs",
               "ViewState": "AgIAAD8AAAAAAAAAAAAowG4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T07:27:55.048Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-15T07:27:55.048Z"
             },
             {
               "$type": "Document",
@@ -210,7 +203,7 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "D:\\Project\\Blog App\\BlogBack\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEIAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAFYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-03T04:16:23.386Z",
               "EditorCaption": ""
@@ -225,8 +218,7 @@
               "RelativeToolTip": "Models\\FollowedAuthors.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T10:40:13.988Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-24T10:40:13.988Z"
             },
             {
               "$type": "Document",
@@ -238,8 +230,7 @@
               "RelativeToolTip": "Models\\FollowedAuthorsModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T09:21:02.766Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-24T09:21:02.766Z"
             },
             {
               "$type": "Document",
@@ -251,8 +242,7 @@
               "RelativeToolTip": "Models\\MongoBlog.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T13:55:28.339Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-10T13:55:28.339Z"
             },
             {
               "$type": "Document",
@@ -264,8 +254,7 @@
               "RelativeToolTip": "Models\\MongoUserProfile.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T15:37:00.668Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-10T15:37:00.668Z"
             },
             {
               "$type": "Document",
@@ -277,8 +266,7 @@
               "RelativeToolTip": "Models\\UserProfile.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-03T13:35:38.525Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-03T13:35:38.525Z"
             },
             {
               "$type": "Document",
@@ -290,8 +278,7 @@
               "RelativeToolTip": "Models\\UserProfileDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T07:06:03.283Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-04T07:06:03.283Z"
             },
             {
               "$type": "Document",
@@ -303,8 +290,7 @@
               "RelativeToolTip": "Services\\AdminService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T07:28:19.322Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-15T07:28:19.322Z"
             },
             {
               "$type": "Document",
@@ -316,8 +302,7 @@
               "RelativeToolTip": "Services\\FollowedAuthorService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T09:21:28.952Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-24T09:21:28.952Z"
             },
             {
               "$type": "Document",
@@ -329,8 +314,7 @@
               "RelativeToolTip": "Services\\MongoBlogService.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAA8wCwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T14:00:33.39Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-10T14:00:33.39Z"
             },
             {
               "$type": "Document",
@@ -342,8 +326,7 @@
               "RelativeToolTip": "Services\\MongoUserProfileService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T15:44:22.367Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-10T15:44:22.367Z"
             },
             {
               "$type": "Document",
@@ -355,8 +338,7 @@
               "RelativeToolTip": ".gitignore",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-08-05T11:47:10.767Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-05T11:47:10.767Z"
             },
             {
               "$type": "Document",
@@ -368,8 +350,7 @@
               "RelativeToolTip": "Dockerfile",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-08-11T07:18:19.999Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-11T07:18:19.999Z"
             },
             {
               "$type": "Document",
