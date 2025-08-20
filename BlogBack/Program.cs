@@ -62,7 +62,8 @@ builder.Services.AddCors(options =>
                 "https://localhost:7167", // local Blazor HTTPS
                 "http://localhost:7167",  // local Blazor HTTP
                 "http://localhost:5000",  // if backend dev server
-                "https://localhost:5001"  // if backend dev server HTTPS
+                "https://localhost:5001" , // if backend dev server HTTPS
+                "https://blog-application4.onrender.com/"
             )
             .AllowAnyHeader()
             .AllowAnyMethod();
