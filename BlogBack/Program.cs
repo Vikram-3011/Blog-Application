@@ -57,6 +57,7 @@ builder.Services.AddCors(options =>
         policy
             .WithOrigins(
                 "https://blog-application-6-7axi.onrender.com",
+                "https://blog-application1-b6nu.onrender.com/"
                 "https://blog-application-6-7axi.onrender.com/",// your production frontend
                 "https://localhost:7167", // local Blazor HTTPS
                 "http://localhost:7167",  // local Blazor HTTP

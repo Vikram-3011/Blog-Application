@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{7EF95696-226A-4B33-8269-FF0A7805DAE1}|BlogBack.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{7EF95696-226A-4B33-8269-FF0A7805DAE1}|BlogBack.csproj|d:\\project\\blog app\\blogback\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{7EF95696-226A-4B33-8269-FF0A7805DAE1}|BlogBack.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7EF95696-226A-4B33-8269-FF0A7805DAE1}|BlogBack.csproj|d:\\project\\blog app\\blogback\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7EF95696-226A-4B33-8269-FF0A7805DAE1}|BlogBack.csproj|solutionrelative:controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -79,10 +83,6 @@
       "RelativeMoniker": "D:0:0:{7EF95696-226A-4B33-8269-FF0A7805DAE1}|BlogBack.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7EF95696-226A-4B33-8269-FF0A7805DAE1}|BlogBack.csproj|d:\\project\\blog app\\blogback\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{7EF95696-226A-4B33-8269-FF0A7805DAE1}|BlogBack.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vikra\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\build\\Container.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
@@ -101,7 +101,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -113,19 +113,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "BlogPostDto.cs",
-              "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Models\\BlogPostDto.cs",
-              "RelativeDocumentMoniker": "Models\\BlogPostDto.cs",
-              "ToolTip": "D:\\Project\\Blog App\\BlogBack\\Models\\BlogPostDto.cs",
-              "RelativeToolTip": "Models\\BlogPostDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABSAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-03T12:49:14.755Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "BlogPost.cs",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Models\\BlogPost.cs",
               "RelativeDocumentMoniker": "Models\\BlogPost.cs",
@@ -137,7 +125,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "UserProfileController.cs",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Controllers\\UserProfileController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserProfileController.cs",
@@ -149,7 +137,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "FollowedAuthorsController.cs",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Controllers\\FollowedAuthorsController.cs",
               "RelativeDocumentMoniker": "Controllers\\FollowedAuthorsController.cs",
@@ -161,7 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "BlogController.cs",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Controllers\\BlogController.cs",
               "RelativeDocumentMoniker": "Controllers\\BlogController.cs",
@@ -173,7 +161,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
@@ -185,7 +173,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "AdminController.cs",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "Controllers\\AdminController.cs",
@@ -203,14 +191,39 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "D:\\Project\\Blog App\\BlogBack\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAAFYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-03T04:16:23.386Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 1,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Dockerfile",
+              "RelativeDocumentMoniker": "Dockerfile",
+              "ToolTip": "D:\\Project\\Blog App\\BlogBack\\Dockerfile",
+              "RelativeToolTip": "Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-08-11T07:18:19.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "BlogPostDto.cs",
+              "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Models\\BlogPostDto.cs",
+              "RelativeDocumentMoniker": "Models\\BlogPostDto.cs",
+              "ToolTip": "D:\\Project\\Blog App\\BlogBack\\Models\\BlogPostDto.cs",
+              "RelativeToolTip": "Models\\BlogPostDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-03T12:49:14.755Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "FollowedAuthors.cs",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Models\\FollowedAuthors.cs",
               "RelativeDocumentMoniker": "Models\\FollowedAuthors.cs",
@@ -222,7 +235,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "FollowedAuthorsModel.cs",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Models\\FollowedAuthorsModel.cs",
               "RelativeDocumentMoniker": "Models\\FollowedAuthorsModel.cs",
@@ -234,7 +247,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "MongoBlog.cs",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Models\\MongoBlog.cs",
               "RelativeDocumentMoniker": "Models\\MongoBlog.cs",
@@ -246,7 +259,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "MongoUserProfile.cs",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Models\\MongoUserProfile.cs",
               "RelativeDocumentMoniker": "Models\\MongoUserProfile.cs",
@@ -258,7 +271,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "UserProfile.cs",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Models\\UserProfile.cs",
               "RelativeDocumentMoniker": "Models\\UserProfile.cs",
@@ -270,7 +283,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "UserProfileDto.cs",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Models\\UserProfileDto.cs",
               "RelativeDocumentMoniker": "Models\\UserProfileDto.cs",
@@ -282,7 +295,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "AdminService.cs",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Services\\AdminService.cs",
               "RelativeDocumentMoniker": "Services\\AdminService.cs",
@@ -294,7 +307,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "FollowedAuthorService.cs",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Services\\FollowedAuthorService.cs",
               "RelativeDocumentMoniker": "Services\\FollowedAuthorService.cs",
@@ -306,7 +319,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "MongoBlogService.cs",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Services\\MongoBlogService.cs",
               "RelativeDocumentMoniker": "Services\\MongoBlogService.cs",
@@ -318,7 +331,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "MongoUserProfileService.cs",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Services\\MongoUserProfileService.cs",
               "RelativeDocumentMoniker": "Services\\MongoUserProfileService.cs",
@@ -330,7 +343,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": ".gitignore",
               "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\.gitignore",
               "RelativeDocumentMoniker": ".gitignore",
@@ -339,18 +352,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-08-05T11:47:10.767Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Dockerfile",
-              "DocumentMoniker": "D:\\Project\\Blog App\\BlogBack\\Dockerfile",
-              "RelativeDocumentMoniker": "Dockerfile",
-              "ToolTip": "D:\\Project\\Blog App\\BlogBack\\Dockerfile",
-              "RelativeToolTip": "Dockerfile",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-08-11T07:18:19.999Z"
             },
             {
               "$type": "Document",
