@@ -3,27 +3,26 @@
 @inject UserStateManager userState
 @inject AuthService authService
 @inject IJSRuntime JSRuntime
-@using BlogFront.Pages
-@using BlogFront.Services
 @inject NavigationManager Nav
+
 <MudThemeProvider IsDarkMode="@isDarkMode" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
-
 <MudLayout>
-    <MudAppBar Elevation="0" Class=" px-4" Style="background-color: transparent;">
+    <MudAppBar Elevation="0" Class="px-4" Style="background-color: transparent;">
         <div class="d-flex justify-between align-center w-100">
+
             @if (userState.IsLoggedIn())
             {
                 <div class="d-flex align-center">
                     <MudTooltip Text="Menu">
-                        <MudIconButton Icon="@Icons.Material.Filled.List" style="color:black;" OnClick="@(() => ToggleDrawer())" />
+                        <MudIconButton Icon="@Icons.Material.Filled.List" style="color:black;" OnClick="@ToggleDrawer" />
                     </MudTooltip>
                 </div>
             }
-            @if  (!userState.IsLoggedIn())
+            else
             {
                 <div style="cursor: pointer;" @onclick="NavigateToCorrectPage">
                     <MudText Typo="Typo.h5" Class="@($"medium-title {GetTextColorClass()}")">
@@ -31,54 +30,65 @@
                     </MudText>
                 </div>
             }
-           
-
 
             <div class="d-flex align-center" style="gap: 8px; margin-left: auto;">
 
                 @if (userState.IsLoggedIn())
                 {
-                    <MudButton Variant="MudBlazor.Variant.Filled" Color="Color.Info" Class="@GetTextColorClass()" OnClick="@(() => Nav.NavigateTo("/upload"))">
+                    <!-- Write button -->
+                    <MudButton Variant="Variant.Filled" Color="Color.Info"
+                               OnClick="@(() => Nav.NavigateTo("/upload"))">
                         Write
-           </MudButton>
+                    </MudButton>
+
+                    <!-- Profile button -->
+                    <MudTooltip Text="Profile">
+                        <MudIconButton Icon="@Icons.Material.Filled.AccountCircle"
+                                       Color="Color.Secondary"
+                                       OnClick="@ToggleOpen" />
+                    </MudTooltip>
                 }
-                @if (!userState.IsLoggedIn())
+                else
                 {
-                    <MudButton OnClick="@(() => Nav.NavigateTo("/"))" Color="Color.Secondary" Variant="MudBlazor.Variant.Text" StartIcon="@Icons.Material.Filled.Login">
-                    Login
-                </MudButton>
+                    <!-- Login button -->
+                    <MudButton OnClick="@(() => Nav.NavigateTo("/"))"
+                               Color="Color.Secondary"
+                               Variant="Variant.Text"
+                               StartIcon="@Icons.Material.Filled.Login">
+                        Login
+                    </MudButton>
                 }
-            
-           
-            <MudTooltip Text="Profile">
-                <MudIconButton Icon="@Icons.Material.Filled.AccountCircle" Color="Color.Secondary" OnClick="@ToggleOpen" />
-            </MudTooltip>
+            </div>
         </div>
+    </MudAppBar>
 
-    </div>
-</MudAppBar>
-
-    <MudPopover Open="@_open" Fixed="true" AnchorOrigin="Origin.TopRight" TransformOrigin="Origin.TopRight" Class="px-4 pt-7 profile-popover" OnClose="@ClosePopover">
+    <!-- Profile Popover -->
+    <MudPopover Open="@_open" Fixed="true" AnchorOrigin="Origin.TopRight"
+                TransformOrigin="Origin.TopRight" Class="px-4 pt-7 profile-popover"
+                OnClose="@ClosePopover">
         <div class="d-flex flex-column">
-
             @if (userState.IsLoggedIn())
             {
-                <MudText Typo="Typo.h6" Class="mb-4"> @userState.UserName</MudText>
+                <MudText Typo="Typo.h6" Class="mb-4">@userState.UserName</MudText>
                 <MudText Typo="Typo.body2">@userState.User?.Email</MudText>
                 <MudDivider Class="my-2" />
-                <MudButton OnClick="@(() => NavigateTo("/profile"))" Variant="MudBlazor.Variant.Text" Style="justify-content: center; text-align: center; " FullWidth="true">Profile </MudButton>
 
-                <MudButton OnClick="Logout" StartIcon="@Icons.Material.Filled.Logout" Variant="MudBlazor.Variant.Text" Color="Color.Error" FullWidth="true">Logout</MudButton>
+                <MudButton OnClick="@(() => NavigateTo("/profile"))"
+                           Variant="Variant.Text" FullWidth="true">Profile</MudButton>
+
+                <MudButton OnClick="Logout"
+                           StartIcon="@Icons.Material.Filled.Logout"
+                           Variant="Variant.Text" Color="Color.Error"
+                           FullWidth="true">Logout</MudButton>
             }
             else
             {
-                <MudButton Variant="MudBlazor.Variant.Text" StartIcon="@Icons.Material.Filled.Login" Href="/">Login</MudButton>
-
+                <MudButton Variant="Variant.Text" StartIcon="@Icons.Material.Filled.Login" Href="/">Login</MudButton>
             }
         </div>
     </MudPopover>
-   
 
+    <!-- Side Drawer -->
     <MudDrawer Open="@isOpen" Variant="DrawerVariant.Persistent" Class="@NavMenuCss">
         <MudDrawerHeader>
             <MudButton Typo="Typo.h4" OnClick="@(() => NavigateTo("/home"))" Class="medium-title">Blog App</MudButton>
@@ -86,81 +96,55 @@
         <NavMenu />
     </MudDrawer>
 
-    
-     <MudMainContent>
+    <!-- Main Content -->
+    <MudMainContent>
         <MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-4">
             @Body
         </MudContainer>
     </MudMainContent>
-
-
 </MudLayout>
-<style>
 
+<style>
     .medium-title {
         font-family: 'Georgia', 'Times New Roman', serif;
         font-weight: 700;
-        font-size: 32px; /* or adjust as needed */
+        font-size: 32px;
         line-height: 1.2;
         letter-spacing: -0.5px;
         color: #121212;
     }
 
     .profile-popover {
-        margin-top: 50px; /* 👈 Push popover down */
-    }   
+        margin-top: 50px;
+    }
 
     .navmenu-profile {
-        background-color: #e6e6e6; /* 🔵 Blue for profile */
+        background-color: #e6e6e6;
     }
 
     .navmenu-default {
-        background-color: #ffffff; /* 🟢 Green for home and others */
+        background-color: #ffffff;
     }
-
-    .navmenu-auth .nav-button,
-    .navmenu-profile .nav-button {
-        color: white;
-    }
-
-    .navmenu-default .nav-button {
-        color: black;
-    }
-
-
-
 </style>
-@code{
+
+@code {
     private bool isOpen = false;
     private bool isDarkMode = false;
-    private bool _open; 
-    private void ToggleDarkMode() => isDarkMode = !isDarkMode;
+    private bool _open;
 
+    private void ToggleDarkMode() => isDarkMode = !isDarkMode;
     private void ToggleDrawer() => isOpen = !isOpen;
-    private string NavMenuCss => GetNavMenuCss(Nav.Uri);
+
     private void NavigateToCorrectPage()
     {
         if (userState.IsLoggedIn())
-        {
             Nav.NavigateTo("/home");
-        }
         else
-        {
             Nav.NavigateTo("/");
-        }
     }
 
-    private string GetTextColorClass()
-    {
-        var path = Nav.ToBaseRelativePath(Nav.Uri).ToLower();
+    private string GetTextColorClass() => "black-text";
 
-        if (path.StartsWith("profile"))
-        {
-            return "black-text";
-        }
-
-        return "black-text";
-    }
     private void NavigateTo(string route)
     {
         _open = false;
@@ -171,11 +155,10 @@
     {
         try
         {
-            await authService.SignOut();           // ✅ Updated
-            userState.ClearUser();                 // ✅ Clear user info manually
-            Console.WriteLine("User logged out!");
-            StateHasChanged();
-            Nav.NavigateTo("/", true);  // ✅ Force reload
+            await authService.SignOut();
+            userState.ClearUser();    // ✅ Clear user info
+            StateHasChanged();        // ✅ Force re-render
+            Nav.NavigateTo("/", true);
         }
         catch (Exception ex)
         {
@@ -183,39 +166,19 @@
         }
     }
 
-
-    private Task RemoveClickListener() => Task.CompletedTask;
-    private Task AddClickListener() => Task.CompletedTask;
-
     private void ClosePopover()
     {
         _open = false;
-        RemoveClickListener();
         StateHasChanged();
     }
+
     private void ToggleOpen()
     {
         _open = !_open;
-        if (_open)
-        {
-            AddClickListener();
-        }
-        else
-        {
-            RemoveClickListener();
-        }
         StateHasChanged();
     }
-    private string GetNavMenuCss(string uri)
-    {
-        var path = Nav.ToBaseRelativePath(uri).ToLowerInvariant();
 
-         // 🔴 Signup Page Red
-        if (path.StartsWith("profile"))
-            return "navmenu-profile";  // 🔵 Profile Page Blue
-
-        return "navmenu-default";      // 🟢 All other pages
-    }
-
-
+    private string NavMenuCss =>
+        Nav.ToBaseRelativePath(Nav.Uri).ToLowerInvariant().StartsWith("profile")
+            ? "navmenu-profile" : "navmenu-default";
 }

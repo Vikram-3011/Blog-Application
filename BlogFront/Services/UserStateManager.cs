@@ -14,8 +14,9 @@ namespace BlogFront.Services
 
         public bool IsAdmin => User?.IsAdmin ?? false;
         public bool IsSuperAdmin => User?.IsSuperAdmin ?? false;
-        public bool IsEmailConfirmed => User?.EmailConfirmed ?? false;
 
+        // ✅ New property\
+        public bool IsEmailConfirmed => User?.EmailConfirmed ?? false;
 
 
         public event Action? OnChange;
@@ -35,6 +36,7 @@ namespace BlogFront.Services
 
         private void NotifyStateChanged() => OnChange?.Invoke();
 
-        public bool IsLoggedIn() => User != null;
+        public bool IsLoggedIn() => User != null ;
+
     }
 }

@@ -10,6 +10,7 @@ namespace BlogFront.Services
         private readonly HttpClient _http;
         private readonly UserStateManager _userState;
         private readonly ISnackbar _snackbar;
+        public event Action? NotifyAuthStateChanged;
 
         public AuthService(HttpClient http, UserStateManager userState, ISnackbar snackbar)
         {
@@ -26,7 +27,6 @@ namespace BlogFront.Services
 
                 if (res.IsSuccessStatusCode)
                 {
-                    _userState.SetUser(new BlogUser(email));
                     _snackbar.Add("Signup successful! Please check your email to verify your account.", Severity.Success);
                     return null;
                 }
@@ -64,10 +64,20 @@ namespace BlogFront.Services
 
                     if (session?.User != null)
                     {
-                        _userState.SetUser(new BlogUser(session.User.Email ?? email));
-                        _snackbar.Add("Login successful!", Severity.Success);
+                        var confirmed = session.User.EmailConfirmedAt != null; // ✅ fixed
+                        _userState.SetUser(new User(session.User.Email ?? email, name: null)
+                        {
+                            EmailConfirmed = confirmed
+                        });
+
+                        if (confirmed)
+                            _snackbar.Add("Login successful!", Severity.Success);
+                        
+
                         return null;
                     }
+
+
 
                     _snackbar.Add("Login failed: No valid session.", Severity.Error);
                     return "No valid session";
@@ -91,12 +101,64 @@ namespace BlogFront.Services
             }
         }
 
+        public async Task<bool> LoginAsync(string email, string password)
+        {
+            try
+            {
+                var res = await _http.PostAsJsonAsync("api/auth/signin", new { Email = email, Password = password });
+
+                if (!res.IsSuccessStatusCode)
+                {
+                    var error = await res.Content.ReadAsStringAsync();
+                    _snackbar.Add($"Login failed: {error}", Severity.Error);
+                    return false;
+                }
+
+                var session = await res.Content.ReadFromJsonAsync<SupabaseSessionResponse>();
+                if (session?.User == null)
+                {
+                    _snackbar.Add("Login failed: No valid session.", Severity.Error);
+                    return false;
+                }
+
+                // ✅ Check confirmed status correctly
+                var confirmed = session.User.EmailConfirmedAt != null;
+
+                // ✅ Set user in state manager
+                _userState.SetUser(new User(session.User.Email ?? email, name: null)
+                {
+                    EmailConfirmed = confirmed
+                });
+
+                // 🔥 Notify UI to update buttons
+                NotifyAuthStateChanged?.Invoke();
+
+                // ✅ Only show snackbar if email is NOT confirmed
+                if (!confirmed)
+                {
+                    _snackbar.Add("Email not verified yet. Please check your inbox.", Severity.Warning);
+                }
+                else
+                {
+                    _snackbar.Add("Login successful!", Severity.Success);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _snackbar.Add($"Login error: {ex.Message}", Severity.Error);
+                return false;
+            }
+        }
+
         public async Task SignOut()
         {
             try
             {
                 await _http.PostAsync("api/auth/signout", null);
                 _userState.ClearUser();
+                NotifyAuthStateChanged?.Invoke();
                 _snackbar.Add("User signed out successfully.", Severity.Success);
             }
             catch (Exception ex)

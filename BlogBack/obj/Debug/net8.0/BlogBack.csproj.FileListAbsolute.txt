@@ -25,7 +25,6 @@ D:\Project\Blog App\BlogBack\obj\Debug\net8.0\staticwebassets\msbuild.build.Blog
 D:\Project\Blog App\BlogBack\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.BlogBack.props
 D:\Project\Blog App\BlogBack\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.BlogBack.props
 D:\Project\Blog App\BlogBack\obj\Debug\net8.0\staticwebassets.pack.json
-D:\Project\Blog App\BlogBack\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\Project\Blog App\BlogBack\obj\Debug\net8.0\BlogBack.csproj.Up2Date
 D:\Project\Blog App\BlogBack\obj\Debug\net8.0\BlogBack.dll
 D:\Project\Blog App\BlogBack\obj\Debug\net8.0\refint\BlogBack.dll

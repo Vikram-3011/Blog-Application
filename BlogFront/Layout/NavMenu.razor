@@ -2,6 +2,7 @@
 @inject UserStateManager userState
 @inject NavigationManager NavigationManager
 @using MudBlazor
+@inject AuthService AuthService
 
 <MudNavMenu Class="nav-wrapper">
 
@@ -91,11 +92,18 @@
 
 @code
 {
-    protected override void OnInitialized() => userState.OnChange += StateChange;
 
-    private void StateChange() => InvokeAsync(StateHasChanged);
+    protected override void OnInitialized()
+    {
+        // Subscribe to BOTH AuthService and UserState changes
+        AuthService.NotifyAuthStateChanged += StateHasChanged;
+        userState.OnChange += StateHasChanged;
+    }
 
-    public void Dispose() => userState.OnChange -= StateChange;
+    public void Dispose()
+    {
+        AuthService.NotifyAuthStateChanged -= StateHasChanged;
+        userState.OnChange -= StateHasChanged;
+    }
 
-   
 }
