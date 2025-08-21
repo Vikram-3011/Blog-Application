@@ -460,6 +460,18 @@
         }
       }
     },
+    "/": {
+      "get": {
+        "tags": [
+          "BlogBack"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/UserProfile/save": {
       "post": {
         "tags": [

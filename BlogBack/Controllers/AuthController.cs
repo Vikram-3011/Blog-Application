@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using Supabase;
 using Supabase.Gotrue;
+using System.Threading.Tasks;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -19,50 +20,75 @@ public class AuthController : ControllerBase
         }
 
         _supabaseClient = new Supabase.Client(config.Value.Url, config.Value.ApiKey, options);
-
     }
 
+    // ✅ SIGNUP
     [HttpPost("signup")]
     public async Task<IActionResult> SignUp([FromBody] AuthRequest request)
     {
         try
         {
             var result = await _supabaseClient.Auth.SignUp(request.Email, request.Password);
-            if (result?.User != null)
-                return Ok("Signup successful, please verify your email.");
 
-            return BadRequest("Signup failed.");
+            if (result?.User != null)
+            {
+                return Ok(new
+                {
+                    Message = "Signup successful, please verify your email.",
+                    User = new
+                    {
+                        result.User.Id,
+                        result.User.Email
+                    }
+                });
+            }
+
+            return BadRequest(new { Message = "Signup failed." });
         }
         catch (Exception ex)
         {
-            return BadRequest($"Error: {ex.Message}");
+            return BadRequest(new { Message = $"Error: {ex.Message}" });
         }
     }
 
+    // ✅ SIGNIN
     [HttpPost("signin")]
     public async Task<IActionResult> SignIn([FromBody] AuthRequest request)
     {
         try
         {
             var result = await _supabaseClient.Auth.SignIn(request.Email, request.Password);
+
             if (result?.User == null)
-                return Unauthorized("Invalid login credentials.");
+                return Unauthorized(new { Message = "Invalid login credentials." });
 
             if (!result.User.EmailConfirmedAt.HasValue)
             {
                 await _supabaseClient.Auth.SignOut();
-                return Unauthorized("Email not verified.");
+                return Unauthorized(new { Message = "Email not verified." });
             }
 
-            return Ok("Login successful.");
+            return Ok(new
+            {
+                Message = "Login successful.",
+                User = new
+                {
+                    result.User.Id,
+                    result.User.Email,
+                    result.AccessToken,
+                    result.RefreshToken
+                }
+            });
         }
         catch (Exception ex)
         {
-            return BadRequest($"Login failed: {ex.Message}");
+            return BadRequest(new { Message = $"Login failed: {ex.Message}" });
         }
     }
 
-    [HttpPost("signout")]
+
+
+[HttpPost("signout")]
     public async Task<IActionResult> SignOut()
     {
         await _supabaseClient.Auth.SignOut();

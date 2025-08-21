@@ -11,5 +11,7 @@
             Email = email;
             Name = name;
         }
+
+        public bool EmailConfirmed { get; set; }
     }
 }

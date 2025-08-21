@@ -13,8 +13,10 @@ namespace BlogFront.Services
         public string? UserName => User?.Name;
 
         public bool IsAdmin => User?.IsAdmin ?? false;
-
         public bool IsSuperAdmin => User?.IsSuperAdmin ?? false;
+        public bool IsEmailConfirmed => User?.EmailConfirmed ?? false;
+
+
 
         public event Action? OnChange;
 
@@ -22,7 +24,7 @@ namespace BlogFront.Services
         {
             User = user;
             NotifyStateChanged();
-            Console.WriteLine($"User state updated: {user?.Email}");
+            Console.WriteLine($"User state updated: {user?.Email} (Confirmed: {IsEmailConfirmed})");
         }
 
         public void ClearUser()

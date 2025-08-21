@@ -10,6 +10,8 @@
         public string Description { get; set; } 
         public List<string> Tags { get; set; }
         public DateTime CreatedAt { get; set; }
+        public bool EmailConfirmed { get; set; }
+
     }
 
 }

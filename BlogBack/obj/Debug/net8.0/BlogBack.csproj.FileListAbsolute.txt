@@ -1,5 +1,3 @@
-D:\Project\Blog App\BlogBack\bin\Debug\net8.0\appsettings.Development.json
-D:\Project\Blog App\BlogBack\bin\Debug\net8.0\appsettings.json
 D:\Project\Blog App\BlogBack\bin\Debug\net8.0\BlogBack.staticwebassets.endpoints.json
 D:\Project\Blog App\BlogBack\bin\Debug\net8.0\BlogBack.exe
 D:\Project\Blog App\BlogBack\bin\Debug\net8.0\BlogBack.deps.json
